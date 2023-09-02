@@ -1,0 +1,108 @@
+*{
+    font-family: 'Roboto', sans-serif;
+}
+:root{
+    --nubs-site-color: rgb(0, 0, 0);
+    --nubs-menu-bars: rgb(92, 255, 255);
+}
+a {
+    text-decoration: none;
+}
+.underline {
+    height: 3px;
+    width: 20%;
+    background-color: cyan;
+    border-radius: 10px;
+    margin: auto !important;
+}
+.graybg {
+    background-color: #f2f2f2;
+}
+.container.bg-dark a, .container-fluid.bg-dark a {
+    color: #fff;
+}
+.fa-bars{
+    color: var(--nubs-menu-bars);
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+.navbar {
+    background-color: var(--nubs-site-color) !important;
+}
+.nav-item a {
+    color: var(--nubs-menu-bars) !important;
+    font-weight: bold;
+}
+.bannerBg {
+    background-color: var(--nubs-menu-bars) !important;
+}
+.footer {
+    background-color: var(--nubs-site-color);
+}
+.card-header.customerRegHeader, .btn-coral {
+    background-color: rgb(255, 161, 127) !important;
+}
+.card-header.regHeader {
+    /* background-color: rgb(167, 213, 255) !important; */
+    background-color: black;
+    color: white;
+}
+label { font-weight: bold;}
+/* contact page */
+.contact-bg {
+    background-image: url("../../images/gals-photo-gray.jpg");
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.contact-icons,
+.card-header .pini  {
+    color: magenta !important;
+}
+.pini:hover .contact-icons, 
+.contact-icons:hover, 
+.card-header .pini:hover {
+    color: aqua !important;
+}
+.socials .contact-icons {
+    font-size: 2.4em ;
+    margin-top: 2px;
+}
+.contact-sub {
+    color: #fff;
+    background-color: magenta;
+}
+.contact-sub:hover {
+    font-weight: bold;
+    color: magenta;
+    background-color: cyan;
+}
+.downloads .ddon {
+    font-size: 10px;
+    font-weight: bold;
+}
+.downloads .gton {
+    font-size: xx-small;
+}
+/* About Us page */
+.about-bg {
+    background-image: url("../../images/Corpers-headdress.jfif");
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.card-header .wini,.about-card h5 {
+    color: magenta !important;
+}
+/* footer */
+#footer {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.7em;
+}
