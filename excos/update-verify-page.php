@@ -11,7 +11,7 @@ include('includes/header.php');
             /**if id is set in url, which is gotten when you clicked edit button */
             if (isset($_SESSION['auth'])) {
                 $profile_qry_run = getAllFromUsers();
-                /**if id is correct and data exists in products table */
+                /**if id is correct and data exists in eventposts table */
                 $profile_data = mysqli_fetch_array($profile_qry_run);
             ?>
                 <div class="card bg-primary text-white">

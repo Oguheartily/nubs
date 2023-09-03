@@ -33,6 +33,14 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
 
     <!-- Custom styles for this template -->
     <link href="assets/css/excosDashboard.css" rel="stylesheet">
+    <!-- CSS -->
+	<style type="text/css">
+	.cke_textarea_inline{
+		border: 1px solid black;
+	}
+	</style>
+    <!-- CKEditor -->	
+	<script src="assets/ckeditor/ckeditor.js" ></script>
 </head>
 
 <body>
@@ -76,10 +84,13 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
                         <li class="nav-item">
                             <a href="cashflow.php" class="nav-link <?= $current_page == "cashflow.php" ? ' active' : ''; ?>"><span class="fas fa-dollar-sign me-2"></span> My Cashflow</a>
                         </li>
-                        <!-- products -->
+                        <li class="nav-item">
+                            <a href="site-preview.php" class="nav-link <?= $current_page == "site-preview.php" ? ' active' : ''; ?>"><span class="fas fa-eye me-2"></span> Site-preview</a>
+                        </li>
+                        <!-- eventposts -->
                         <h6 class="sidebar-heading px-3 mt-2 mb-1 text-muted">News / Events</h6>
                         <li class="nav-item">
-                            <a href="news-events.php" class="nav-link <?= $current_page == "news-events.php" ? ' active' : ''; ?>"><span class="fa fa-newspaper me-2"></span></span>My Posts</a>
+                            <a href="news-events.php" class="nav-link <?= $current_page == "news-events.php" ? ' active' : ''; ?>"><span class="fa fa-pen me-2"></span></span> Edit Posts</a>
                         </li>
                         <li class="nav-item">
                             <a href="add-event.php" class="nav-link <?= $current_page == "add-event.php" ? ' active' : ''; ?>"><span class="fa fa-plus me-2"></span>Add Posts</a>

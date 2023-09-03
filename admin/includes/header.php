@@ -72,13 +72,13 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
                         <li class="nav-item">
                             <a href="add-category.php" class="nav-link <?= $current_page == "add-category.php" ? ' active' : ''; ?>"><span class="fa fa-plus me-2"></span>Add Category</a>
                         </li>
-                        <!-- products -->
+                        <!-- eventposts -->
                         <h6 class="sidebar-heading px-3 mt-2 mb-0 text-muted">Products</h6>
                         <li class="nav-item">
-                            <a href="products.php" class="nav-link <?= $current_page == "products.php" ? ' active' : ''; ?>"><span class="fa fa-shopping-cart me-2"></span></span>All Products</a>
+                            <a href="eventposts.php" class="nav-link <?= $current_page == "eventposts.php" ? ' active' : ''; ?>"><span class="fa fa-shopping-cart me-2"></span></span>All Products</a>
                         </li>
                         <li class="nav-item">
-                            <a href="add-product.php" class="nav-link <?= $current_page == "add-product.php" ? ' active' : ''; ?>"><span class="fa fa-plus me-2"></span>Add Product</a>
+                            <a href="add-event.php" class="nav-link <?= $current_page == "add-event.php" ? ' active' : ''; ?>"><span class="fa fa-plus me-2"></span>Add Product</a>
                         </li>
                         <!-- orders -->
                         <h6 class="sidebar-heading px-3 mt-2 mb-0 text-muted">Orders</h6>

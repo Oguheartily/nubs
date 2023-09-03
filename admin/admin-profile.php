@@ -13,7 +13,7 @@ include('includes/header.php');
                 $id = $_SESSION['auth_user']['user_id'];
                 $profile_qry = "SELECT * FROM `users` WHERE id='$id' ";
                 $profile_qry_run = mysqli_query($con, $profile_qry);
-                /**if id is correct and data exists in products table */
+                /**if id is correct and data exists in eventposts table */
                 $profile_data = mysqli_fetch_array($profile_qry_run);
             ?>
                 <div class="card">

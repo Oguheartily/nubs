@@ -13,7 +13,7 @@ $id = returnVendorId();
                 <div class="card-header bg-primary">
                     <h4>All My Posts</h4>
                 </div>
-                <div class="card-body table-responsive" id="products_table">
+                <div class="card-body table-responsive" id="eventposts_table">
                     <table class="table table-bordered table-striped text-center">
                         <thead>
                             <tr>
@@ -40,11 +40,11 @@ $id = returnVendorId();
                                         <td>
                                             <img src="../uploads/<?= $item['image']; ?>" width="50px" height="50px" alt="<?= $item['image']; ?>">
                                         </td>
-                                        <td><?= $item['status'] ? "Approved" : "Hidden"; ?></td>
+                                        <td><?= $item['status'] ? '<span class="btn btn-success btn-sm text-white fs-6 mx-1"><span class="fa fa-check"></span></span>' : '<span class="btn btn-warning btn-sm text-dark fs-6"><span class="fa fa-hourglass-half"></span></span>'; ?></td>
                                         <td><?= $item['created_date']; ?></td>
                                         <td><a href="edit-event.php?id=<?= $item['id']; ?>" class="btn btn-sm btn-info">Edit</a></td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-danger delete_product_btn" value="<?= $item['id']; ?>">Delete</button>
+                                            <button type="button" class="btn btn-sm btn-danger delete_eventpost_btn" value="<?= $item['id']; ?>">Delete</button>
                                         </td>
                                     </tr>
                             <?php

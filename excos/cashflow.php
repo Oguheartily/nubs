@@ -18,7 +18,7 @@ if (isset($_SESSION['auth'])) {
 <div class="container-fluid">
   <?php
   /** if user is not verified, status is 3 so dont display any income */
-  $qry_run = mysqli_query($con, "SELECT `status` FROM `users` WHERE id='$venId' ");
+  $qry_run = mysqli_query($con, "SELECT `status` FROM `users` WHERE `id`='$venId' ");
   $currentExcosStatus = mysqli_fetch_array($qry_run);
   if ($currentExcosStatus['status'] == 3) { ?>
     <h3>Verify Account in <a href="excos_profile.php">profile page</a> to see cashflow</h3>
@@ -147,7 +147,6 @@ if (isset($_SESSION['auth'])) {
 </div>
 <!-- /.container-fluid -->
 
-<!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
 <?php
 include('includes/footer.php');
 ?>

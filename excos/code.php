@@ -6,115 +6,97 @@ use function PHPSTORM_META\type;
 include('../config/dbcon.php');
 include('../functions/excosfunctions.php');
 
-/** ADD PRODUCT PROCESSING */
+/** ADD EVENT POST PROCESSING */
 if(isset($_POST['add_post_btn'])){
     $category_id = $_POST['category_id'];
-    $vendorId = $_POST['vendorId'];
-    $heading = $_POST['heading'];
-    $content = $_POST['content'];
+    $userId = $_POST['userId'];
+    $post_heading = $_POST['post_heading'];
+    $post_content = $_POST['post_content'];
 
     /**get name of uploaded image */
     $image = $_FILES['image']['name'];
     $path = "../uploads";
     $image_ext = pathinfo($image, PATHINFO_EXTENSION);
     // $filename = $image;
-    $filename = time().'.'.$image_ext;
+    $filename = 'article'.time().'.'.$image_ext;
 
-    if($productname != "" && $small_description != "" && $image != "" ){
+    if($post_heading != "" && $post_content != "" && $image != "" ){
+        $eventpost_query_run = mysqli_query($con, "INSERT INTO `events_post`(`user_id`, `heading`, `image`, `content`, `post_category_id`) 
+        VALUES ('$userId','$post_heading','$filename','$post_content','$category_id')");
 
-        $prod_query = "INSERT INTO `products`(`category_id`, `vendor_id`,`product_name`, `slug`, `small_description`, `description`, `original_price`, `selling_price`, `image`, `qty`, `status`, `trending`, `popular`, `meta_title`, `meta_keywords`, `meta_description`) VALUES ('$category_id','$vendorId','$productname','$slug','$small_description','$description','$original_price','$selling_price','$filename','$qty','$status','$trending','$popular','$meta_title','$meta_keywords','$meta_description')";
-        $product_query_run = mysqli_query($con, $prod_query);
-
-        if($product_query_run){
+        if($eventpost_query_run){
             move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
-            redirecter("add-product.php", "Product added successfully");
+            redirecter("index.php", "Event Post added successfully");
         }
         else{
-            redirecter("add-product.php", "Unable to add product, Something went wrong");
+            redirecter("add-event.php", "Unable to add event post, Something went wrong");
         }
     }
     else{
-        redirecter("add-product.php", "The folllowing fields cannot be empty: product Name, small description, image.");
+        redirecter("add-event.php", "The folllowing fields cannot be empty: event post Name, small description, image.");
     }
 }
 /** EDIT PRODUCT */
 else if(isset($_POST['update_post_btn'])){
-    $product_id = $_POST['product_id'];
+    $eventpost_id = $_POST['eventpost_id'];
     $category_id = $_POST['category_id'];
-    $productname = $_POST['productname'];
-    $slug = $_POST['slug'];
-    $small_description = $_POST['small_description'];
-    $description = $_POST['description'];
-    $original_price = $_POST['original_price'];
-    $selling_price = $_POST['selling_price'];
-    $qty = $_POST['qty'];
-    $status = isset($_POST['status']) ? '1': '0';
-    $trending = isset($_POST['trending']) ? '1': '0';
-    $popular = isset($_POST['popular']) ? '1': '0';
-    $meta_title = $_POST['meta_title'];
-    $meta_keywords = $_POST['meta_keywords'];
-    $meta_description = $_POST['meta_description'];
+    $post_heading = $_POST['post_heading'];
+    $post_content = $_POST['post_content'];
 
     /**get name of uploaded image */
     /** get old image */
-    $old_product_image = $_POST['old_product_image'];
+    $old_eventpost_image = $_POST['old_eventpost_image'];
     /**get name of uploaded image */
     $new_image = $_FILES['image']['name'];
     if($new_image != ""){
         // $update_filename = $new_image;
         $image_ext = pathinfo($new_image, PATHINFO_EXTENSION);
-        $update_filename = time().'.'.$image_ext;
+        $update_filename = 'article'.time().'.'.$image_ext;
     }
     else {
-        $update_filename = $old_product_image;
+        $update_filename = $old_eventpost_image;
     }
     $path = "../uploads";
-    $prod_update_query = "UPDATE `products` SET `category_id`='$category_id', `product_name`='$productname', 
-                 `slug`='$slug', `small_description`='$small_description', `description`='$description', 
-                 `original_price`='$original_price', `selling_price`='$selling_price', `image`='$update_filename', `qty`='$qty', 
-                 `status`='$status', `trending`='$trending', `popular`='$popular', `meta_title`='$meta_title', 
-                 `meta_keywords`='$meta_keywords', `meta_description`='$meta_description' WHERE `id`='$product_id'";
-        
-    $product_update_query_run = mysqli_query($con, $prod_update_query);
 
-    if($product_update_query_run){
+    $eventpost_update_query_run = mysqli_query($con, "UPDATE `events_post` SET `heading`='$post_heading',
+    `image`='$update_filename',`content`='$post_content',`post_category_id`='$category_id' WHERE `id`='$eventpost_id' ");
+
+    if($eventpost_update_query_run){
         if($new_image != ""){
             move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$update_filename);
             /**since new image exist, delete the old image from the uploads folder */
-            if(file_exists("../uploads/".$old_product_image)){
-                unlink("../uploads/".$old_product_image);
+            if(file_exists("../uploads/".$old_eventpost_image)){
+                unlink("../uploads/".$old_eventpost_image);
             }
         }
-        redirecter("edit-product.php?id=$product_id", "Product Updated successfully");
+        redirecter("edit-event.php?id=$eventpost_id", "Post Updated successfully");
     }
     else{
-        redirecter("edit-product.php?id=$product_id", "Unable to Update Product, Something went wrong");
+        redirecter("edit-event.php?id=$eventpost_id", "Unable to Update Post, Something went wrong");
     }
 }
 /** DELETE PRODUCT, CONFIRMED BY AJAX BEFORE DELETION */
-else if(isset($_POST['delete_product_btn'])){
-    $product_id = mysqli_real_escape_string($con, $_POST['product_id']);
+else if(isset($_POST['delete_eventpost_btn'])){
+    $eventpost_id = mysqli_real_escape_string($con, $_POST['eventpost_id']);
     /**check database for image name of id to be deleted */
-    $product_query = "SELECT * FROM `products` WHERE id='$product_id' ";
-    $product_query_run = mysqli_query($con, $product_query);
-    $product_data = mysqli_fetch_array($product_query_run);
-    $image_to_deleted = $product_data['image'];
-    /**query that deleted the selected row frow db */
-    $delete_query = "DELETE FROM `products` WHERE id='$product_id' ";
-    $delete_query_run = mysqli_query($con, $delete_query);
+    $eventpost_query_run = mysqli_query($con, "SELECT * FROM `event_post` WHERE id='$eventpost_id' ");
+    $eventpost_data = mysqli_fetch_array($eventpost_query_run);
+    $image_to_delete = $eventpost_data['image'];
+    /**query that delete the selected row frow db */
+    $delete_query_run = mysqli_query($con, $delete_query, "DELETE FROM `event_post` WHERE id='$eventpost_id' ");
     if($delete_query_run){
         /**if file with image name exist delete image from uploads 
-         * folder after deleting product from database */
-        if(file_exists("../uploads/".$image_to_deleted)){
-            unlink("../uploads/".$image_to_deleted);
+         * folder after deleting eventpost from database */
+        if(file_exists("../uploads/".$image_to_delete)){
+            unlink("../uploads/".$image_to_delete);
         }
-        // $_SESSION['message'] = "product Deleted Successfully!";
-        // header("Location: products.php");
+        // $_SESSION['message'] = "eventpost Delete Successfully!";
+        // header("Location: eventposts.php");
         echo 200;
     }
     else{
         // $_SESSION['message'] = "Unable to Delete item, Something went wrong";
-        // header("Location: products.php");
+        // header("Location: eventposts.php");
         echo 500;
     }
 }

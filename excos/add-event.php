@@ -37,17 +37,19 @@ $id = returnVendorId();
                                 </select>
                             </div>
                                 <input type="hidden" name="userId" value="<?= $id;?>" class="form-control">
-                            <div class="col-md-6 mt-4">
+                            <div class="col-md-12 mt-4">
                                 <label class="text-bold mb-0">Heading</label>
-                                <input type="text" name="heading" placeholder="Enter product name" class="form-control" required>
+                                <textarea name="post_heading" id="post_heading" cols="30" style="border: 1px solid black;" rows="10"></textarea>
+                                <!-- <textarea name="" id="" placeholder="Enter title here..."  required></textarea> -->
                             </div>
                             <div class="col-md-12 mt-4">
                                 <label class="text-bold mb-0">Upload Image</label>
                                 <input type="file" name="image" placeholder="Upload Image" class="form-control" required>
                             </div>
+                            
                             <div class="col-md-12 mt-4">
                                 <label class="text-bold mb-0">Description</label>
-                                <textarea name="content" placeholder="Content goes here..." class="form-control" rows="3" required></textarea>
+                                <textarea name="post_content" id="post_content" placeholder="Content goes here..." class="form-control" rows="3" ></textarea>
                             </div>
                             <div class="col-md-12 mt-4">
                                 <button type="submit" class="btn btn-primary" name="add_post_btn">ADD POST</button>
