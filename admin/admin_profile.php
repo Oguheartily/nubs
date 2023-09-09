@@ -1,10 +1,10 @@
 <?php
 
-include('../middleware/excosAuthenticator.php');
+include('../middleware/adminAuthenticator.php');
 include('includes/header.php');
 ?>
 
-<div>
+<div >
     <div class="row mt-4">
         <div class="col-md-12">
             <?php
@@ -15,8 +15,8 @@ include('includes/header.php');
                 $profile_data = mysqli_fetch_array($profile_qry_run);
             ?>
                 <div class="card">
-                    <div class="card-header bg-primary text-warning text-center">
-                        <h4>Profile Of <?= $profile_data['user_name']; ?></h4>
+                    <div class="card-header bg-primary text-info text-center">
+                        <h4>Profile Of The <?= $profile_data['current_position'];?></h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -26,7 +26,7 @@ include('includes/header.php');
                             <div class="col-6 col-md-5">
                                 <img src="../images/nubsIDCard/<?= $profile_data['nubs_id_card']; ?>" class="w-100" alt="">
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-8">
                                 <div class="row align-items-center">
                                     <div class="col-4 my-3 fw-bold">Firstname</div>
                                     <div class="col-8"><?= $profile_data['first_name']; ?></div>

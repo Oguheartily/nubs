@@ -1,6 +1,6 @@
 <?php 
 // require('../config/dbcon.php');
-    require('myfunctions.php');
+    require('adminfunctions.php');
     /**USER REGISTRATION */
     if(isset($_POST['register_btn'])){
 
@@ -39,32 +39,6 @@
             }
         } else {
             redirecter("../register.php", "Passwords do not match");
-        }
-    }
-    /** UPDATE USER PROFILE */
-    else if(isset($_POST['profile_update_btn'])){
-
-        $firstname = mysqli_real_escape_string($con,$_POST['firstname']);
-        $lastname = mysqli_real_escape_string($con,$_POST['lastname']);
-        $username = mysqli_real_escape_string($con,$_POST['username']);
-        $email = mysqli_real_escape_string($con,$_POST['email']);
-        $phonenumber = mysqli_real_escape_string($con,$_POST['phonenumber']);
-        $school = mysqli_real_escape_string($con,$_POST['school']);
-        $currentNubsPost = mysqli_real_escape_string($con,$_POST['currentNubsPost']);
-        $activeNubsYear = mysqli_real_escape_string($con,$_POST['activeNubsYear']);
-        $schoolingState = mysqli_real_escape_string($con,$_POST['select-state']);
-        $compound = mysqli_real_escape_string($con,$_POST['select-compound']);
-        $userAddress = mysqli_real_escape_string($con,$_POST['userAddress']);
-
-        $userId = $_SESSION['auth_user']['user_id'];
-
-        $profile_update_run = mysqli_query($con, "UPDATE `users` SET `first_name`='$firstname',`last_name`='$lastname',`user_name`='$username',`e_mail`='$email',`phone_number`='$phonenumber',`user_address`='$userAddress',`compound`='$compound',`current_position`='$currentNubsPost',`active_year`='$activeNubsYear',`school`='$school',`state_of_schooling`='$schoolingState' WHERE `id`='$userId' ");
-
-        if($profile_update_run){
-            redirecter("../user-profile.php", "Profile Update Successful");
-        }
-        else{
-            redirecter("../user-profile.php", "Something went Wrong, unable to update profile!!!");
         }
     }
     /** LOGIN */
@@ -268,69 +242,7 @@
             redirecter("../contact.php", "Oops, Something went Wrong, try again");
         }
     }
-    /** MEMBER PROFILE PHOTO VERIFICATION */
-    else if(isset($_POST['user_dp_verify_btn'])){
-        $userId = $_SESSION['auth_user']['user_id'];
-        $myUsername = $_SESSION['auth_user']['username'];
-
-        /**Member Profile Picture */
-        $profilePhoto = $_FILES['profilePhoto']['name'];
-        $userImgpath = "../images/userDP";
-        $profilePhoto_ext = pathinfo($profilePhoto, PATHINFO_EXTENSION);
-        // $filename = $image;
-        $userImgfilename = $myUsername.'DP.'.$profilePhoto_ext;
-
-        if($userId != "" && $profilePhoto != ""){
-            /**check and remove from folder, to avoid duplicate of same file */
-            if(file_exists("../images/userDP/".$userImgfilename)){
-                unlink("../images/userDP/".$userImgfilename);
-            }
-            $user_verif_qry_run = mysqli_query($con,"UPDATE `users` SET `user_image`='$userImgfilename' WHERE `id`='$userId' ");
-            
-            if($user_verif_qry_run){
-                move_uploaded_file($_FILES['profilePhoto']['tmp_name'], $userImgpath.'/'.$userImgfilename);
-
-                redirecter("../user-profile.php", "Profile Photo Added successfully");
-            }
-            else{
-                redirecter("../user-profile.php", "Unable to update info, Something went wrong");
-            }
-        }
-        else{
-            redirecter("../user-profile.php", "No photo detected, field cannot be empty!");
-        }
-    }
-    /** MEMBER ID CARD VERIFICATION */
-    else if(isset($_POST['user_id_card_verify_btn'])){
-        $userId = $_SESSION['auth_user']['user_id'];
-        $myUsername = $_SESSION['auth_user']['username'];
-
-        /**Member ID Card Image */
-        $nubsIDCard = $_FILES['nubsIDCard']['name'];
-        $userIDpath = "../images/nubsIDCard";
-        $nubsIDCard_ext = pathinfo($nubsIDCard, PATHINFO_EXTENSION);
-        // $filename = $image;
-        $userIDfilename = $myUsername.'IDCard.'.$nubsIDCard_ext;
-
-        if($userId != "" && $nubsIDCard != ""){
-            /**check and remove from folder, to avoid duplicate of same file */
-            if(file_exists("../images/nubsIDCard/".$userIDfilename)){
-                    unlink("../images/nubsIDCard/".$userIDfilename);
-            }
-            $user_verif_qry_run = mysqli_query($con,"UPDATE `users` SET `nubs_id_card`='$userIDfilename' WHERE `id`='$userId' ");
-            
-            if($user_verif_qry_run){
-                move_uploaded_file($_FILES['nubsIDCard']['tmp_name'], $userIDpath.'/'.$userIDfilename);
-                redirecter("../user-profile.php", "ID card image Added successfully");
-            }
-            else{
-                redirecter("../user-profile.php", "Unable to update info, Something went wrong");
-            }
-        }
-        else{
-            redirecter("../user-profile.php", "No ID card detected, field cannot be empty!");
-        }
-    }
+    /** Profile and ID and DP update codes are in code . php in excos to avoid code duplication */
     else {
 
     }

@@ -5,7 +5,7 @@
                 <a href="index.php"><i class="fa fa-home text-white"></i></a>
             </div>
             <div class="col-3 p-2">
-                <a href="news.php" class="text-white"><i class="fas fa-newspaper"></i></a>
+                <a href="posts.php" class="text-white"><i class="fas fa-newspaper"></i></a>
             </div>
             <div class="col-3 p-2">
                 <?php

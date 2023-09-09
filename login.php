@@ -19,8 +19,8 @@ include("includes/header.php");
                 </div>
             <?php unset($_SESSION['message']); }?>
             <div class="card">
-                <div class="card-header py-3 text-center">
-                    <h3 class="fw-bolder">Login</h3>
+                <div class="card-header bg-primary py-3 text-center">
+                    <h3 class="fw-bolder text-white">Login</h3>
                 </div>
                 <div class="card-body">
                     <form action="functions/authcode.php" method="POST">

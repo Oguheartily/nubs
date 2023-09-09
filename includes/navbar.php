@@ -10,10 +10,10 @@
                     <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">News & Events</a>
+                    <a class="nav-link" href="posts.php">News & Events</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Excos</a>
+                    <a class="nav-link" href="excos.php">Excos</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Mr & Miss bille</a>
@@ -36,7 +36,7 @@
                             } else if ($_SESSION['role_as'] == "1") {
                             ?>
                                 <a class="dropdown-item" href="admin/index.php">Dashboard</a>
-                                <a class="dropdown-item" href="admin/admin-profile.php">Profile</a>
+                                <a class="dropdown-item" href="admin/admin_profile.php">Profile</a>
                             <?php
                             } else {
                             ?>

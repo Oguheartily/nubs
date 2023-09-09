@@ -1,12 +1,11 @@
 <?php 
-include('../middleware/excosAuthenticator.php');
-/** vendorfunction .php is already in adminware so we dont need to inclusde it here */
+include('../middleware/adminAuthenticator.php');
+/** excosfunction .php is already in adminware so we dont need to inclusde it here */
 include_once('../config/dbcon.php');
 include('includes/header.php');
-$id = returnVendorId();
 ?>
 
-<div class="">
+<div >
     <div class="row mt-4">
         <div class="col-md-12">
             <div class="card">
@@ -29,7 +28,7 @@ $id = returnVendorId();
                         <tbody>
                             <?php
                             /**select all posts that belong to the current Exco */
-                            $query_run = mysqli_query($con, "SELECT * FROM `events_post` WHERE `user_id`='$id' ");
+                            $query_run = mysqli_query($con, "SELECT * FROM `events_post` ");
                             // mysqli_fetch_assoc()
 
                             if (mysqli_num_rows($query_run) > 0) {

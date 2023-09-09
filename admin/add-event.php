@@ -1,6 +1,6 @@
 <?php
 
-include('../middleware/excosAuthenticator.php');
+include('../middleware/adminAuthenticator.php');
 include('includes/header.php');
 /**get the current excos id, code is in excos functions */
 $id = returnExcosId();
@@ -20,8 +20,7 @@ $id = returnExcosId();
                                 <label class="text-bold mb-0">Select Category</label>
                                 <select name="category_id" class="form-select form-control">
                                     <option selected>Select Category</option>
-                                    <?php
-                                    
+                                    <?php 
                                     $query_run = mysqli_query($con, "SELECT * FROM `event_categories` ");
                                     /**check if category is empty */
                                     if (mysqli_num_rows($query_run) > 0) {

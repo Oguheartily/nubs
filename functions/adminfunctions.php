@@ -15,7 +15,7 @@ function returnExcosId(){
     }
     return $id;
 }
-/**GET ALL Excos */
+/**GET ALL USERS */
 function getAllFromUsers(){
     global $con;
     $excoId = $_SESSION['auth_user']['user_id'];
@@ -43,4 +43,32 @@ function readMoreFunction($story_desc, $link, $targetFile, $id)
     $story_desc = $story_desc . " . . .<span class='btn btn-sm btn-primary fs-0'><a href='$link?$targetFile=$id' class='text-white text-decoration-none'>Read More...</a></span>";
     return $story_desc;
 }
+
+/**ALL REGISTERED MEMBERS */
+function getAllMembers(){
+    global $con;
+    return $allMembers_qry_run = mysqli_query($con, "SELECT * FROM `users` WHERE `role_as`='0' AND `status`='0' ");
+}
+/**ALL EXCOS */
+function getAllExcos(){
+    global $con;
+    return $allExcos_qry_run = mysqli_query($con, "SELECT * FROM `users` WHERE `role_as`='2' ");
+}
+/**ALL REGISTERED CURRENT EXCOS */
+function getAllCurrentExcos(){
+    global $con;
+    return $allMembers_qry_run = mysqli_query($con, "SELECT * FROM `users` WHERE `role_as`='2' AND `status`='2' ");
+}
+/**ALL REGISTERED CURRENT EXCOS */
+function getAllAlumniExcos(){
+    global $con;
+    return $allMembers_qry_run = mysqli_query($con, "SELECT * FROM `users` WHERE `role_as`='2' AND `status`='3' ");
+}
+/**CHECK ID BEFORE PROCEEDING TO VIEW MEMBER DETAILS */
+function checkMemberIdValidity($customerId){
+    global $con;
+    return $customerId_query_run = mysqli_query($con, "SELECT * FROM `users` WHERE `id`='$customerId' ");
+}
+
+
 ?>

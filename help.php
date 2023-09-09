@@ -10,10 +10,10 @@ include('includes/header.php');
                     <h4>Help & FAQ</h4>
                 </div>
                 <div class="card-body">
-                    <h4 class="text-primary">I Suspect a Excos or a Customer, How do I Report?</h4>
+                    <h4 class="text-primary">I Suspect a Excos or a Member, How do I Report?</h4>
                     <p>Security is paramount and Nubs-Bille care greatly about your well being,
                         this is only a platform for exchange of goods and services,
-                        so if as a customer, you suspect any person trying of the following:
+                        so if as a member, you suspect any person trying of the following:
                     </p>
                     <ol>
                         <li>Scam / Fake Alert.</li>
@@ -30,7 +30,7 @@ include('includes/header.php');
                         <em class="text-danger">SHINE YOUR EYES.</em>
                     </p>
                     <p>we try our best to limit who we allow on the platform but please,</p>
-                    <p class="text-danger">DON'T follow any customer or excos to an isolated location for exchange of anything.
+                    <p class="text-danger">DON'T follow any member or excos to an isolated location for exchange of anything.
                         open spaces with security, front of the NYSC Secretariat is okay for any transactions.</p>
                     <p>Please do well to ask / take <em>receipt</em> for items purchased where necessary.</p>
 

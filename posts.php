@@ -1,7 +1,6 @@
 <?php
 include("functions/userfunctions.php");
 include("includes/header.php");
-include("includes/slider.php");
 ?>
 
 <div class="container py-5">
@@ -11,9 +10,9 @@ include("includes/slider.php");
             <hr>
         </div>
         <?php
-        /** get all posts which are marked as important, ie status as 1
+        /** get all posts which are marked as important, ie status as 
          */
-        $allPosts = getAllImportantPosts();
+        $allPosts = getAllPosts();
         if (mysqli_num_rows($allPosts) > 0) {
             foreach ($allPosts as $postItem) {
         ?>
@@ -40,12 +39,10 @@ include("includes/slider.php");
                                     }
                                     ?>
                                     <?= $postItem['post_category']; ?> | Published on: <?= $postItem['created_date']; ?></div>
-                                <div>
-                                    <?=
-                                    /**import readmore function */
-                                    $readMore = readMoreFunction($postItem['content'], "postViewer.php", "post_id", $postItem['id']);
-                                    ?>
-                                </div>
+                                <div><?=
+                                        /**import readmore function */
+                                        $readMore = readMoreFunction($postItem['content'], "postViewer.php", "post_id", $postItem['id']);
+                                        ?></div>
                             </div>
                         </div>
                     </div>

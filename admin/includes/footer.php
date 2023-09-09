@@ -35,21 +35,31 @@
 <!-- Fontawesome JS Offline -->
 <script src="../../fontawesome5/js/all.min.js"></script>
 <!-- Online Alertify JavaScript -->
-  <!-- <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script> -->
-  <!--  alertify offline js file -->
-  <script src="assets/alertifyjs/alertify.min.js"></script>
+<!-- <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script> -->
+<!--  alertify offline js file -->
+<script src="assets/alertifyjs/alertify.min.js"></script>
 <!-- Alertify initialization which catches the alerts -->
 <script>
-    
-    <?php
-    if (isset($_SESSION['message'])) { ?>
-      alertify.set('notifier', 'position', 'top-right');
-      alertify.success('<?= $_SESSION['message']; ?>');
-    <?php unset($_SESSION['message']);
-    }; 
-    ?>
-  </script>
+  <?php
+  if (isset($_SESSION['message'])) { ?>
+    alertify.set('notifier', 'position', 'top-right');
+    alertify.success('<?= $_SESSION['message']; ?>');
+  <?php unset($_SESSION['message']);
+  };
+  ?>
+</script>
+<!-- Script -->
+<script type="text/javascript">
+  // Initialize CKEditor
+  CKEDITOR.inline('post_heading');
 
+  CKEDITOR.replace('post_content', {
+
+    width: "100%",
+    height: "200px"
+
+  });
+</script>
 </body>
 
 </html>

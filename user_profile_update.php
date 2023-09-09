@@ -19,7 +19,7 @@ include('includes/header.php');
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                                <form action="functions/authcode.php" method="POST">
+                                <form action="excos/code.php" method="POST">
                                     <div class="form-group mb-3">
                                         <label>Firstname</label>
                                         <input type="text" class="form-control" value="<?= $profile_data['first_name']; ?>" name="firstname" placeholder="Enter firstname" />
@@ -105,7 +105,7 @@ include('includes/header.php');
                 </div>
                 <div class="card-body text-white">
                     <!-- further verification -->
-                    <form action="functions/authcode.php" method="POST" enctype="multipart/form-data">
+                    <form action="excos/code.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-12 mt-1">
                                 <label class="text-bold mb-0">Profile Photo</label>
@@ -127,7 +127,7 @@ include('includes/header.php');
                 </div>
                 <div class="card-body text-white">
                     <!-- further verification -->
-                    <form action="functions/authcode.php" method="POST" enctype="multipart/form-data">
+                    <form action="excos/code.php" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-12 mt-1">
                                 <label class="text-bold mb-0">NUBS ID Card</label>

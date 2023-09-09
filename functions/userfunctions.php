@@ -40,4 +40,41 @@ function getNubsHierarchy(){
     $getHierarchy_qry = "SELECT * FROM `nubs_hierarchy` ";
     return $getHierarchy_qry_run = mysqli_query($con, $getHierarchy_qry);
 }
+/**Function to create readmore on long posts */
+// echo readMoreFunction($row['story_desc'],"story.php","story_id",$row['story_id']); }
+function readMoreFunction($story_desc, $link, $targetFile, $id)
+{
+    //Number of characters to show  
+    $chars = 80;
+    $story_desc = substr($story_desc, 0, $chars);
+    $story_desc = substr($story_desc, 0, strrpos($story_desc, ' '));
+    $story_desc = $story_desc . " . . .<span class='btn btn-sm btn-primary fs-0'><a href='$link?$targetFile=$id' class='text-white text-decoration-none'>Read More...</a></span>";
+    return $story_desc;
+}
+/** get all posts which are marked as important, ie status as 1
+ */
+function getAllPosts() {
+    global $con;
+    $postsqry_run = mysqli_query($con, "SELECT ec.post_category, ep.* FROM events_post ep, event_categories ec WHERE ep.post_category_id=ec.id ");
+    return $postsqry_run;
+}
+    /** get all posts which are marked as important, ie status as 1
+     */
+function getAllImportantPosts() {
+    global $con;
+    $postsqry_run = mysqli_query($con, "SELECT ec.post_category, ep.* FROM events_post ep, event_categories ec WHERE ep.status='1' AND ep.post_category_id=ec.id ");
+    return $postsqry_run;
+}
+/**Single event Viewer */
+function getSinglePost($thisPostId) {
+    global $con;
+    $postsqry_run = mysqli_query($con, "SELECT ec.post_category, ep.* FROM events_post ep, event_categories ec WHERE ep.id=$thisPostId AND ep.post_category_id=ec.id ");
+    return $postsqry_run;
+}
+/**Single event Viewer */
+function getExcosOfServiceYear($getServiceYear) {
+    global $con;
+    return $postsqry_run = mysqli_query($con, "SELECT * FROM `users` WHERE `active_year`='$getServiceYear' ");
+    
+}
 ?>

@@ -3,7 +3,7 @@ include('../middleware/excosAuthenticator.php');
 include('includes/header.php');
 ?>
 
-<div class="">
+<div >
     <div class="row mt-4">
         <div class="col-md-12">
             <?php
@@ -19,7 +19,7 @@ include('includes/header.php');
                     <div class="card">
                         <div class="card-header">
                             <h4>Edit Post
-                                <a href="news-events.php" class="btn btn-primary float-end"><span class="fa fa-reply"></span><span class="d-none d-sm-inline">&nbsp;Back</span></a>
+                                <a href="my-posts.php" class="btn btn-primary float-end"><span class="fa fa-reply"></span><span class="d-none d-sm-inline">&nbsp;Back</span></a>
                             </h4>
                         </div>
                         <div><?php if (isset($_SESSION['message'])) { ?>

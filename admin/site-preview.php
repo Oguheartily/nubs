@@ -1,5 +1,5 @@
 <?php
-include('../middleware/excosAuthenticator.php');
+include('../middleware/adminAuthenticator.php');
 include('includes/header.php');
 ?>
 

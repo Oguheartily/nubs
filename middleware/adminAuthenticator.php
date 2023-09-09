@@ -1,5 +1,5 @@
 <?php
-include('../functions/myfunctions.php');
+include('../functions/adminfunctions.php');
 /** if user is logged in */
 if(isset($_SESSION['auth'])){
     /**if role_as is not 1 means its a normal user, redirect to homepage */

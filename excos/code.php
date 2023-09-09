@@ -18,7 +18,7 @@ if(isset($_POST['add_post_btn'])){
     $path = "../uploads";
     $image_ext = pathinfo($image, PATHINFO_EXTENSION);
     // $filename = $image;
-    $filename = 'article'.time().'.'.$image_ext;
+    $filename = 'article'.time().rand(1111,9999).'.'.$image_ext;
 
     if($post_heading != "" && $post_content != "" && $image != "" ){
         $eventpost_query_run = mysqli_query($con, "INSERT INTO `events_post`(`user_id`, `heading`, `image`, `content`, `post_category_id`) 
@@ -26,17 +26,17 @@ if(isset($_POST['add_post_btn'])){
 
         if($eventpost_query_run){
             move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
-            redirecter("index.php", "Event Post added successfully");
+            redirecter("../index.php", "Event Post added successfully");
         }
         else{
-            redirecter("add-event.php", "Unable to add event post, Something went wrong");
+            redirecter("../add-event.php", "Unable to add event post, Something went wrong");
         }
     }
     else{
-        redirecter("add-event.php", "The folllowing fields cannot be empty: event post Name, small description, image.");
+        redirecter("../add-event.php", "The folllowing fields cannot be empty: event post Name, small description, image.");
     }
 }
-/** EDIT PRODUCT */
+/** EDIT POST */
 else if(isset($_POST['update_post_btn'])){
     $eventpost_id = $_POST['eventpost_id'];
     $category_id = $_POST['category_id'];
@@ -75,7 +75,7 @@ else if(isset($_POST['update_post_btn'])){
         redirecter("edit-event.php?id=$eventpost_id", "Unable to Update Post, Something went wrong");
     }
 }
-/** DELETE PRODUCT, CONFIRMED BY AJAX BEFORE DELETION */
+/** DELETE POST, CONFIRMED BY AJAX BEFORE DELETION */
 else if(isset($_POST['delete_eventpost_btn'])){
     $eventpost_id = mysqli_real_escape_string($con, $_POST['eventpost_id']);
     /**check database for image name of id to be deleted */
@@ -90,13 +90,9 @@ else if(isset($_POST['delete_eventpost_btn'])){
         if(file_exists("../uploads/".$image_to_delete)){
             unlink("../uploads/".$image_to_delete);
         }
-        // $_SESSION['message'] = "eventpost Delete Successfully!";
-        // header("Location: eventposts.php");
         echo 200;
     }
     else{
-        // $_SESSION['message'] = "Unable to Delete item, Something went wrong";
-        // header("Location: eventposts.php");
         echo 500;
     }
 }
@@ -116,54 +112,92 @@ else if(isset($_POST['profile_update_btn'])){
     $userAddress = mysqli_real_escape_string($con,$_POST['userAddress']);
 
     $excoId = $_SESSION['auth_user']['user_id'];
+    $roleAs = $_SESSION['role_as'];
 
     $profile_update_run = mysqli_query($con, "UPDATE `users` SET `first_name`='$firstname',
     `last_name`='$lastname',`user_name`='$username',`e_mail`='$email',`phone_number`='$phonenumber',
     `user_address`='$userAddress',`compound`='$compound',`current_position`='$currentNubsPost',
     `active_year`='$activeNubsYear',`school`='$school',`state_of_schooling`='$schoolingState' WHERE `id`='$excoId' ");
     if($profile_update_run){
-        redirecter("excos_profile.php", "Profile Update Successful");
+        if($roleAs == 2){
+            redirecter("excos_profile.php", "Profile Update Successful");
+        }
+        else if($roleAs == 1){
+            redirecter("../admin/admin_profile.php", "Profile Update Successful");
+        } else {
+            redirecter("../user-profile.php", "Profile Update Successful");
+        }
     }
     else{
-        redirecter("excos_profile.php", "Something went Wrong, try again");
+        if($roleAs == 2){
+            redirecter("excos_profile.php", "OOPS!, Unable to update profile, try again.");
+        }
+        else if($roleAs == 1){
+            redirecter("../admin/admin_profile.php", "OOPS!, Unable to update profile, try again.");
+        } else {
+            redirecter("../user-profile.php", "OOPS!, Unable to update profile, try again.");
+        }
     }
 }
 /** EXCOS PROFILE PHOTO VERIFICATION */
 else if(isset($_POST['user_dp_verify_btn'])){
     $userId = $_SESSION['auth_user']['user_id'];
     $myUsername = $_SESSION['auth_user']['username'];
+    $roleAs = $_SESSION['role_as'];
 
     /**EXCOS Profile Picture */
     $profilePhoto = $_FILES['profilePhoto']['name'];
-    $userImgpath = "../images/excosDP";
+    $userImgpath = "../images/userDP";
     $profilePhoto_ext = pathinfo($profilePhoto, PATHINFO_EXTENSION);
     // $filename = $image;
     $userImgfilename = $myUsername.'DP.'.$profilePhoto_ext;
 
     if($userId != "" && $profilePhoto != ""){
         /**check and remove from folder, to avoid duplicate of same file */
-        if(file_exists("../images/excosDP/".$userImgfilename)){
-            unlink("../images/excosDP/".$userImgfilename);
+        if(file_exists("../images/userDP/".$userImgfilename)){
+            unlink("../images/userDP/".$userImgfilename);
         } else {}
         $user_verif_qry_run = mysqli_query($con,"UPDATE `users` SET `user_image`='$userImgfilename' WHERE `id`='$userId' ");
         
         if($user_verif_qry_run){
             move_uploaded_file($_FILES['profilePhoto']['tmp_name'], $userImgpath.'/'.$userImgfilename);
 
-            redirecter("../user-profile.php", "Profile Photo Added successfully");
+            if($roleAs == 2){
+                redirecter("excos_profile.php", "Profile Photo Added successfully");
+            }
+            else if($roleAs == 1){
+                redirecter("../admin/admin_profile.php", "Profile Photo Added successfully");
+            } else {
+                redirecter("../user-profile.php", "Profile Photo Added successfully");
+            }
         }
         else{
-            redirecter("../user-profile.php", "Unable to update info, Something went wrong");
+            if($roleAs == 2){
+                redirecter("excos_profile.php", "OOPS!, Unable to update Profile Photo, Please try again.");
+            }
+            else if($roleAs == 1){
+                redirecter("../admin/admin_profile.php", "OOPS!, Unable to update Profile Photo, Please try again.");
+            } else {
+                redirecter("../user-profile.php", "OOPS!, Unable to update Profile Photo, Please try again.");
+            }
         }
     }
     else{
-        redirecter("../user-profile.php", "No photo detected, field cannot be empty!");
+        if($roleAs == 2){
+            redirecter("excos_profile.php", "Profile Photo detected, field cannot be empty!");
+        }
+        else if($roleAs == 1){
+            redirecter("../admin/admin_profile.php", "Profile Photo detected, field cannot be empty!");
+        } else {
+            redirecter("../user-profile.php", "Profile Photo detected, field cannot be empty!");
+        }
     }
 }
 /** EXCOS ID CARD VERIFICATION */
 else if(isset($_POST['user_id_card_verify_btn'])){
     $userId = $_SESSION['auth_user']['user_id'];
     $myUsername = $_SESSION['auth_user']['username'];
+    $roleAs = $_SESSION['role_as'];
 
     /**Member ID Card Image */
     $nubsIDCard = $_FILES['nubsIDCard']['name'];
@@ -181,18 +215,39 @@ else if(isset($_POST['user_id_card_verify_btn'])){
         
         if($user_verif_qry_run){
             move_uploaded_file($_FILES['nubsIDCard']['tmp_name'], $userIDpath.'/'.$userIDfilename);
-            redirecter("../user-profile.php", "ID card image Added successfully");
+            /**this file is used for admin and excos so, we use role as to redirect */
+            if($roleAs == 2){
+                redirecter("excos_profile.php", "ID card image Added successfully");
+            }
+            else if($roleAs == 1){
+                redirecter("../admin/admin_profile.php", "ID card image Added successfully");
+            } else {
+                redirecter("../user-profile.php", "ID card image Added successfully");
+            }
         }
         else{
-            redirecter("../user-profile.php", "Unable to update info, Something went wrong");
+            if($roleAs == 2){
+                redirecter("excos_profile.php", "OOPS!, Unable to update ID Card, Please try again.");
+            }
+            else if($roleAs == 1){
+                redirecter("../admin/admin_profile.php", "OOPS!, Unable to update ID Card, Please try again.");
+            } else {
+                redirecter("../user-profile.php", "OOPS!, Unable to update ID Card, Please try again.");
+            }
         }
     }
     else{
-        redirecter("../user-profile.php", "No ID card detected, field cannot be empty!");
+        if($roleAs == 2){
+            redirecter("excos_profile.php", "No ID card detected, field cannot be empty!");
+        }
+        else if($roleAs == 1){
+            redirecter("../admin/admin_profile.php", "No ID card detected, field cannot be empty!");
+        } else {
+            redirecter("../user-profile.php", "No ID card detected, field cannot be empty!");
+        }
     }
 }
 else{
     header('Location: ../index.php');
 }
-
 ?>

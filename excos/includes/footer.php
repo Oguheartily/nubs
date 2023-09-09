@@ -54,15 +54,14 @@
 </script>
 <!-- Script -->
 <script type="text/javascript">
-	
   // Initialize CKEditor
-  CKEDITOR.inline( 'post_heading');
+  CKEDITOR.inline('post_heading');
 
-  CKEDITOR.replace('post_content',{
+  CKEDITOR.replace('post_content', {
 
     width: "100%",
     height: "200px"
- 
+
   });
 </script>
 

@@ -10,7 +10,7 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="multi-excos e-commerce">
+    <meta name="description" content="multi-excos nubs-website">
     <meta name="author" content="Ogu Heartily Pasisi">
     <!-- <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"> -->
     <!-- <link rel="icon" type="image/png" href="../assets/img/favicon.png"> -->
@@ -58,7 +58,7 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
                 $usersV_data = mysqli_fetch_array($usersV_qry_run);
             }
                 ?>
-            <a class="text-white px-3" href="excos_profile.php"><img src="../images/excosDP/<?= $usersV_data['user_image']; ?>" width="40px" class="rounded-circle" alt=""></a>
+            <a class="text-white px-3" href="excos_profile.php"><img src="../images/userDP/<?= $usersV_data['user_image']; ?>" width="40px" class="rounded-circle" alt=""></a>
             <button class="navbar-toggler text-white d-md-none collapsed outline-0 border-0 pt-1" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="fa fa-bars outline-0 border-0"></span>
             </button>
@@ -90,7 +90,7 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
                         <!-- eventposts -->
                         <h6 class="sidebar-heading px-3 mt-2 mb-1 text-muted">News / Events</h6>
                         <li class="nav-item">
-                            <a href="news-events.php" class="nav-link <?= $current_page == "news-events.php" ? ' active' : ''; ?>"><span class="fa fa-pen me-2"></span></span> Edit Posts</a>
+                            <a href="my-posts.php" class="nav-link <?= $current_page == "my-posts.php" ? ' active' : ''; ?>"><span class="fa fa-pen me-2"></span></span> Edit Posts</a>
                         </li>
                         <li class="nav-item">
                             <a href="add-event.php" class="nav-link <?= $current_page == "add-event.php" ? ' active' : ''; ?>"><span class="fa fa-plus me-2"></span>Add Posts</a>

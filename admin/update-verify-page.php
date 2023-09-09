@@ -1,6 +1,6 @@
 <?php
 
-include('../middleware/excosAuthenticator.php');
+include('../middleware/adminAuthenticator.php');
 include('includes/header.php');
 ?>
 
@@ -20,7 +20,7 @@ include('includes/header.php');
                     </div>
                     <!-- <div class="card-body d-none"> -->
                     <div class="card-body">
-                        <form action="code.php" method="POST">
+                        <form action="../excos/code.php" method="POST">
                             <div class="form-group mb-3">
                                 <label>Firstname</label>
                                 <input type="text" class="form-control" value="<?= $profile_data['first_name']; ?>" name="firstname" placeholder="Enter firstname" />
@@ -34,7 +34,22 @@ include('includes/header.php');
                                 <input type="text" class="form-control" value="<?= $profile_data['user_name']; ?>" name="username" placeholder="Enter username" />
                             </div>
                             <div class="form-group mb-3 p-1 bg-secondary">
-                                <label>Gender : <?= $profile_data['gender']; ?></label>
+                                <label>Gender</label>
+                                <?php
+                                if ($profile_data['gender'] = "Male") { ?>
+                                    <div class="form-check form-check-inline ms-4">
+                                        <input type="radio" class="form-check-input" name="select-gender" id="maleOption" value="male" checked>
+                                        <label for="maleOption" class="form-check-label">Male</label>
+                                    </div>
+                                <?
+                                } else if ($profile_data['gender'] = "Female") { ?>
+                                    <div class="form-check form-check-inline ms-4">
+                                        <input type="radio" class="form-check-input" name="select-gender" id="femaleOption" value="female" checked>
+                                        <label for="femaleOption" class="form-check-label">Female</label>
+                                    </div>
+                                <?php
+                                }
+                                ?>
                             </div>
                             <div class="form-group mb-3">
                                 <label>Email</label>
@@ -82,7 +97,7 @@ include('includes/header.php');
                         </div>
                         <div class="card-body text-white">
                             <!-- further verification -->
-                            <form action="code.php" method="POST" enctype="multipart/form-data">
+                            <form action="../excos/code.php" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-12 mt-1">
                                         <label class="text-bold mb-0">Profile Photo</label>
@@ -104,7 +119,7 @@ include('includes/header.php');
                         </div>
                         <div class="card-body text-white">
                             <!-- further verification -->
-                            <form action="code.php" method="POST" enctype="multipart/form-data">
+                            <form action="../excos/code.php" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="col-md-12 mt-1">
                                         <label class="text-bold mb-0">NUBS ID Card</label>

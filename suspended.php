@@ -20,7 +20,7 @@ if(isset($_SESSION['auth'])){
                     Hello Dear, sorry about this, your account has been temporarily suspended.</p>
                     <p>Reasons for possible Suspension:</p>
                     <ul>
-                        <li>Report by a excos / customer of the suspended account.</li>
+                        <li>Report by a excos / member of the suspended account.</li>
                         <li>Wrong, Fake or Misleading Information provided by the suspended account</li>
                     </ul>
                     <p>To unsuspend your account, follow the steps: </p>
