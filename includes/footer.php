@@ -1,64 +1,73 @@
-  <footer >
-    <div class="container-fluid footer pt-3 bg-dark text-white">
-      <div class="row">
-        <div class="col-12">
-          <div class="fas fa-phone-alt">&nbsp;&nbsp;+23489432222265</div><br><br>
-          <div class="fas fa-map-marker-alt">&nbsp;&nbsp;&nbsp;Bille Kingdom, Port-Harcourt City</div><br><br>
-          <div class="fas fa-envelope">&nbsp;&nbsp;<a href="mailto:nubsbille@gmail.com" id="mbemail">nubsbille@gmail.com</a></div><br>
+  <?php
+  $OfficeInfo = getOrganizationInfo();
+  if (mysqli_fetch_array($OfficeInfo) > 0) {
+    foreach ($OfficeInfo as $officedata) {
+  ?>
+      <footer>
+        <div class="container-fluid footer pt-3 bg-dark text-white">
+          <div class="row">
+            <div class="col-12">
+              <div class="mb-2"><span class="fas fa-phone-alt text-info"></span>&nbsp;&nbsp;<?= $officedata['office_phone']; ?></div>
+              <div class="mb-2"><span class="fas fa-map-marker-alt text-info"></span>&nbsp;&nbsp;&nbsp;<?= $officedata['office_address']; ?></div>
+              <div class="mb-2"><span class="fas fa-envelope text-info"></span>&nbsp;&nbsp;<a href="mailto:<?= $officedata['office_email']; ?>" id="mbemail1"><?= $officedata['office_email']; ?></a></div><br>
+            </div>
+            <!-- 12 col span above, 6, 6 cols below -->
+            <div class="col-12">
+              <hr class="light col-12">
+            </div>
+            <h5 class="text-center grayColor">Let's Connect</h5>
+            <div class="col-12">
+              <hr class="light">
+            </div>
+            <div class="col-6 text-center">
+              <p><a href="https://web.facebook.com/profile.php?id=100089238085856" target="_blank"><i class="fab fa-facebook-square"></i>&nbsp;&nbsp;&nbsp;facebook</a></p>
+            </div>
+            <div class="col-6 text-center">
+              <p><a href="https://www.instagram.com/betmystro/?next=%2F" target="_blank"><i class="fab fa-instagram"></i>&nbsp;&nbsp;&nbsp;instagram</a></p>
+            </div>
+            <div class="col-6 text-center">
+              <p><a href="https://twitter.com/Bet_mystro" data-show-count="false" target="_blank" class="pe-3"><i class="fab fa-twitter"></i>&nbsp;&nbsp;&nbsp;twitter</a>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></a>
+              </p>
+            </div>
+            <div class="col-6 text-center">
+              <p><a href="https://www.youtube.com/channel/UCwd6T7Mg1KMIgqPSW7vDscQ" target="_blank" class="pe-3"><i class="fab fa-youtube me-2"></i>&nbsp;youtube</a></p>
+            </div>
+            <div class="col-12">
+              <hr class="light-100">
+            </div>
+            <address class="text-center" id="footnote">
+              The National Union of Bille Students (NUBS), is the sole organization of all students from the
+              Community Bille Kingdom, in South-South Nigeria.
+            </address>
+            <hr class="light-100">
+            <div class="mb-3 text-center">
+              <h5 class="text-center grayColor">Links</h5>
+              <span class="p-2"><a href="contact.php">Contact Us</a></span>
+              <span class="p-2"><a href="about.php">About Us</a></span>
+              <span class="p-2"><a href="help.php">Help & FAQ</a></span>
+              <span class="p-2"><a href="privacy-policy.php">Privacy</a></span>
+              <span class="p-2"><a href="cookies-policy.php">Cookies</a></span>
+              <span class="p-2"><a href="terms-of-service.php">Terms of Service</a></span>
+            </div>
+            <div class="col-12 text-center">
+              <hr class="light-100">
+              <p>Copyright &copy; <span class="text-info">
+                  <?php echo date('Y'); ?></span> National Union of Bille Students (NUBS)
+              </p>
+            </div>
+          </div>
         </div>
-        <!-- 12 col span above, 6, 6 cols below -->
-        <div class="col-12">
-          <hr class="light col-12">
-        </div>
-        <h5 class="text-center grayColor">Let's Connect</h5>
-        <div class="col-12">
-          <hr class="light">
-        </div>
-        <div class="col-6 text-center">
-          <p><a href="https://web.facebook.com/profile.php?id=100089238085856" target="_blank"><i class="fab fa-facebook-square">&nbsp;&nbsp;&nbsp;facebook</i></a></p>
-        </div>
-        <div class="col-6 text-center">
-          <p><a href="https://www.instagram.com/betmystro/?next=%2F" target="_blank"><i class="fab fa-instagram">&nbsp;&nbsp;&nbsp;instagram</i></a></p>
-        </div>
-        <div class="col-6 text-center">
-          <p><a href="https://twitter.com/Bet_mystro" data-show-count="false" target="_blank"><i class="fab fa-twitter">&nbsp;&nbsp;&nbsp;twitter</i></a>
-            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></a>
-          </p>
-        </div>
-        <div class="col-6 text-center">
-          <p><a href="https://www.youtube.com/channel/UCwd6T7Mg1KMIgqPSW7vDscQ" target="_blank"><i class="fab fa-youtube me-2">&nbsp;&nbsp;&nbsp;youtube</i></a></p>
-        </div>
-
-        <div class="col-12">
-          <hr class="light-100">
-        </div>
-        <address class="text-center" id="footnote">The Miss Bille Pageantry Contest is a Private Competition
-          open to all female indigens of Bille Kingdom of Rivers State
-          in the South-south of Nigeria.
-        </address>
-        <hr class="light-100">
-        <div class="mb-4">
-          <h6>Links</h6>
-          <span class="p-2"><a href="contact.php">Contact Us</a></span>
-          <span class="p-2"><a href="about.php">About Us</a></span>
-          <span class="p-2"><a href="help.php">Help & FAQ</a></span>
-          <span class="p-2"><a href="privacy-policy.php">Privacy</a></span>
-          <span class="p-2"><a href="cookies-policy.php">Cookies</a></span>
-          <span class="p-2"><a href="terms-of-service.php">Terms of Service</a></span>
-        </div>
-        <div class="col-12 text-center">
-          <hr class="light-100">
-          <p>Copyright &copy; <span class="text-info">
-              <?php echo date('Y'); ?></span> National Union of Bille Students (NUBS)
-          </p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
+        <div class="d-block d-lg-none pb-5"></div>
+      </footer>
+  <?php
+    }
+  } else {
+  }
+  ?>
   <?php include('bottomnavbar.php'); ?>
   <!-- online bootstrap js file -->
-  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   <!-- jquery -->
   <script src="assets/js/jquery.js"></script>
   <!-- offline bootstrap js file -->
@@ -68,7 +77,7 @@
 
 
   <!-- Online Alertify JavaScript -->
-  <!-- <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script> -->
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
   <!--  alertify offline js file -->
   <script src="assets/alertifyjs/alertify.min.js"></script>
   <!-- owl carousel offline js file -->

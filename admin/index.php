@@ -27,8 +27,8 @@ include('includes/header.php');
               <img src="../uploads/<?= $postItem['image']; ?>" alt="<?= $postItem['image']; ?>" class="post_img">
             </div>
             <div class="col-8 col-md-9">
-              <div ><?= $postItem['heading']; ?></div>
-              <div >
+              <div><?= $postItem['heading']; ?></div>
+              <div>
                 <div class="fw-bold">Category:
                   <?php
                   /**style the icon for each category */
@@ -43,26 +43,24 @@ include('includes/header.php');
                   }
                   ?>
                   <?= $postItem['post_category']; ?> | Published on: <?= $postItem['created_date']; ?></div>
-                <div><?=
-                      /**import readmore function */
-                      $readMore = readMoreFunction($postItem['content'], "postViewer.php", "post_id", $postItem['id']);
-                      ?></div>
+                <div>
+                  <?=
+                  /**import readmore function */
+                  $readMore = readMoreFunction($postItem['content'], "postViewer.php", "post_id", $postItem['id']);
+                  ?>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      <?php
+    <?php
       }
     } else {
-      ?>
-      <h3>No Events or Articles from you.</h3>
-    <?php
+      echo "<h3>No Events or Articles from you.</h3>";
     }
     ?>
   </div>
   <!-- /.container-fluid -->
-
-  <!-- <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
-<?php
-include('includes/footer.php');
-?>
+  <?php
+  include('includes/footer.php');
+  ?>

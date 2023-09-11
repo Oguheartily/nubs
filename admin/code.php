@@ -176,7 +176,48 @@ else if(isset($_POST['updateMemberRoleAsBtn'])){
     redirecter("viewMember.php?id=$userId", "Member Status Updated Successfully");
 }
 /** UPDATE PROFILE, DP & ID CARD are all handled in code.php in excos folder */
+/**INSERT OFFICE DATA */
+else if(isset($_POST['insert_officedata_btn'])){
+    $officeEmail = $_POST['officeEmail'];
+    $officePhone = $_POST['officePhone'];
+    $userAddress = $_POST['userAddress'];
+    $officeFacebook = $_POST['officeFacebook'];
+    $officeInstagram = $_POST['officeInstagram'];
+    $officeX = $_POST['officeX'];
+    $officeWhatsapp = $_POST['officeWhatsapp'];
+    $officeYoutube = $_POST['officeYoutube'];
 
+    $updateOfficeData_run = mysqli_query($con, "INSERT INTO `organization_info`(`office_address`, `office_phone`, `office_email`, `office_facebook`, `office_instagram`, `office_x`, `office_whatsapp`) 
+    VALUES ('$userAddress','$officePhone','$officeEmail','$officeFacebook','$officeInstagram','$officeX','$officeWhatsapp','$officeYoutube') ");
+    if ($updateOfficeData_run){
+        redirecter("settings.php", "Organization Data Updated Successfully");
+    } else {
+        redirecter("settings.php", "Unable to Update Organization Info.");
+    }
+}
+/**UPDATE OFFICE DATA */
+else if(isset($_POST['officedata_update_btn'])){
+    $officeId = $_POST['officeId'];
+    $officeEmail = $_POST['officeEmail'];
+    $officePhone = $_POST['officePhone'];
+    $userAddress = $_POST['userAddress'];
+    $officeFacebook = $_POST['officeFacebook'];
+    $officeInstagram = $_POST['officeInstagram'];
+    $officeX = $_POST['officeX'];
+    $officeWhatsapp = $_POST['officeWhatsapp'];
+    $officeYoutube = $_POST['officeYoutube'];
+
+    $updateOfficeData_run = mysqli_query($con, "UPDATE `organization_info` SET `office_address`='$userAddress',`office_phone`='$officePhone',`office_email`='$officeEmail',`office_facebook`='$officeFacebook',`office_instagram`='$officeInstagram',`office_x`='$officeX',`office_whatsapp`='$officeWhatsapp',`office_youtube`='$officeYoutube' WHERE `id`='$officeId' ");
+    if ($updateOfficeData_run){
+        redirecter("settings.php", "Organization Data Updated Successfully");
+    } else {
+        redirecter("settings.php", "Unable to Update Organization Info.");
+    }
+}
+/**OFFICE DATA CANCEL BUTTON */
+else if(isset($_POST['officedata_cancel_btn'])){
+    redirecter("settings.php", "Changes reversed");
+}
 else{
     header('Location: ../index.php');
 }

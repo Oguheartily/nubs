@@ -135,26 +135,11 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
                     <ul class="collapse" id="account-collapse">
                         <li class="nav-item"><a href="admin_profile.php" class="nav-link  <?= $current_page == "admin_profile.php" ? ' active' : ''; ?>"><span class="fa fa-user me-2"></span>Profile</a></li>
                         <li class="nav-item"><a href="../index.php" class="nav-link"><span class="fa fa-user-tag me-2"></span>As User</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link"><span class="fa fa-cog me-2"></span>Settings</a></li>
+                        <li class="nav-item"><a href="settings.php" class="nav-link"><span class="fa fa-cog me-2"></span>Settings</a></li>
                         <li class="nav-item"><a href="../logout.php" class="nav-link"><span class="fa fa-sign-out-alt me-2"></span>Logout</a></li>
                     </ul>
                     </div>
-                    <!-- <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="../index.php">
-                                <span class="fas fa-user-circle"></span>
-                                View as User
-                            </a>
-                        </li>
-                    </ul> -->
                 </div>
-                <!-- end row -->
-                <!-- <div class="nav-item logoutLi">
-                    <a href="../logout.php" class="nav-link bg-danger logoutanchor">
-                        <span class="fa fa-sign-out-alt"></span>
-                        Logout
-                    </a>
-                </div> -->
             </nav>
             <!-- END SIDEBAR -->
 

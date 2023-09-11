@@ -16,7 +16,7 @@ include('includes/header.php');
             ?>
                 <div class="card">
                     <div class="card-header bg-primary text-info text-center">
-                        <h4>Profile Of The <?= $profile_data['current_position'];?></h4>
+                        <h4><span class="fa fa-user me-2"></span> Profile Of The <?= $profile_data['current_position'];?></h4>
                     </div>
                     <div class="card-body">
                         <div class="row">

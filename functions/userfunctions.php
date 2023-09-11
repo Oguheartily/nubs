@@ -74,7 +74,11 @@ function getSinglePost($thisPostId) {
 /**Single event Viewer */
 function getExcosOfServiceYear($getServiceYear) {
     global $con;
-    return $postsqry_run = mysqli_query($con, "SELECT * FROM `users` WHERE `active_year`='$getServiceYear' ");
-    
+    return $postsqry_run = mysqli_query($con, "SELECT * FROM `users` WHERE `active_year`='$getServiceYear' AND `role_as`='1' || `active_year`='$getServiceYear' AND `role_as`='2' || `active_year`='$getServiceYear' AND `status`='3' ");
+}
+/**Organization information */
+function getOrganizationInfo() {
+    global $con;
+    return $office_qry_run = mysqli_query($con, "SELECT * FROM `organization_info` ");
 }
 ?>

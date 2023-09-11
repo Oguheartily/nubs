@@ -69,6 +69,10 @@ function checkMemberIdValidity($customerId){
     global $con;
     return $customerId_query_run = mysqli_query($con, "SELECT * FROM `users` WHERE `id`='$customerId' ");
 }
-
+/**Organization information */
+function getOrganizationInfo() {
+    global $con;
+    return $office_qry_run = mysqli_query($con, "SELECT * FROM `organization_info` ");
+}
 
 ?>

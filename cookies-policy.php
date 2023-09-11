@@ -6,7 +6,7 @@ include('includes/header.php');
     <div class="row mt-2">
         <div class="col-12">
             <div class="card mb-3">
-                <div class="card-header bg-white text-info">
+                <div class="card-header bg-white text-info text-center">
                     <h4>Cookies Policy</h4>
                 </div>
                 <div class="card-body">
@@ -56,7 +56,7 @@ include('includes/header.php');
                     <div>We use Cookies to distinguish you from other users of our website.</div>
                     </p>
                     <p>
-                        <b>Third Party Cookies</b>
+                    <div><b>Third Party Cookies</b></div>
                     <div>Third party Cookies are placed by third parties that provide services to Us and/or to you.</div>
                     <div>Third party Cookies could be used by advertising services to serve up tailored advertising to you on Our Site,
                         or by third parties providing analytics services to Us.</div>
@@ -87,12 +87,17 @@ include('includes/header.php');
                         <em>In addition to the controls that We provide, you can choose to enable or disable Cookies in your internet browser.</em>
                     </p>
                     <p>
-                        <div><b>Changes to this Cookie Policy</b></div>
+                    <div><b>Changes to this Cookie Policy</b></div>
                     <div>
                         Changes and Alterations to this Cookie Policy may take place at any time. If We do so, details of the changes will be highlighted at the top of this page.
                         Any such changes will become effective on your first use of Our Site after the changes have been made.
                     </div>
                     </p>
+                    <h5>Links to Other Related Information</h5>
+                    <ul>
+                        <li><a href="privacy-policy.php">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.php">Terms of Service</a></li>
+                    </ul>
                 </div>
             </div>
         </div>

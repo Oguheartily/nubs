@@ -3,10 +3,10 @@ include("functions/userfunctions.php");
 include("includes/header.php");
 ?>
 
-<div class="container py-5">
+<div class="container py-4">
     <div class="row">
         <div class="col-md-12">
-            <h4 class="text-center"><i class="fa fa-fire"></i> Latest News</h4>
+            <h4 class="text-center">All Information</h4>
             <hr>
         </div>
         <?php
@@ -34,15 +34,17 @@ include("includes/header.php");
                                         echo '<span class="text-success"><span class="fas fa-calendar-alt"></span></span>';
                                     } else if ($postItem['post_category'] == "reminder") {
                                         echo '<span class="text-danger"><span class="fas fa-bell"></span></span>';
-                                    } else if ($postItem['post_category'] == "general info") {
+                                    } else if ($postItem['post_category'] == "general-info") {
                                         echo '<span class="text-info"><span class="fas fa-bullhorn"></span></span>';
                                     }
                                     ?>
                                     <?= $postItem['post_category']; ?> | Published on: <?= $postItem['created_date']; ?></div>
-                                <div><?=
-                                        /**import readmore function */
-                                        $readMore = readMoreFunction($postItem['content'], "postViewer.php", "post_id", $postItem['id']);
-                                        ?></div>
+                                <div>
+                                    <?=
+                                    /**import readmore function */
+                                    $readMore = readMoreFunction($postItem['content'], "postViewer.php", "post_id", $postItem['id']);
+                                    ?>
+                                </div>
                             </div>
                         </div>
                     </div>
