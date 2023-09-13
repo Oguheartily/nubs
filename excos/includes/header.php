@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 /** getting the filename from the url, used to detect the active tabs */
 $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'], "/") + 1);
 /** using a ternary operator: if current page = href. add alass active and primary color.  */
@@ -18,29 +19,33 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
     <!-- Bootstrap core CSS Offline -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome Icons Online -->
-    <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <!-- Online alertify CSS file -->
-    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" /> -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- online alertify Bootstrap theme -->
-    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" /> -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
     <!-- offline Alertify css file -->
     <link rel="stylesheet" href="assets/alertifyjs/css/alertify.min.css" />
     <!-- offline alertify theme -->
     <link rel="stylesheet" href="assets/alertifyjs/css/themes/bootstrap.min.css" />
     <!-- fontawesome 5 offline -->
     <link rel="stylesheet" href="../../fontawesome5/css/all.min.css">
+    <!-- ED EDITOR CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="assets/css/excosDashboard.css" rel="stylesheet">
     <!-- CSS -->
-	<style type="text/css">
-	.cke_textarea_inline{
-		border: 1px solid black;
-	}
-	</style>
-    <!-- CKEditor -->	
-	<script src="assets/ckeditor/ckeditor.js" ></script>
+    <style type="text/css">
+        .cke_textarea_inline {
+            border: 1px solid black;
+        }
+    </style>
+    <!-- CKEditor -->
+    <script src="assets/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -48,7 +53,7 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
     <!-- sidebar -->
     <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" id="navHeader">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="index.php">
-        <?php
+            <?php
             $getlogo = getSiteLogo();
             if (mysqli_num_rows($getlogo) > 0) {
                 $logo = mysqli_fetch_array($getlogo);
@@ -61,13 +66,13 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
             ?>
         </a>
         <div class="position-relative">
-            <?php 
+            <?php
             if (isset($_SESSION['auth'])) {
-            $id = $_SESSION['auth_user']['user_id'];
-                $usersV_qry_run = mysqli_query($con,"SELECT user_image FROM users WHERE id='$id' ");
+                $id = $_SESSION['auth_user']['user_id'];
+                $usersV_qry_run = mysqli_query($con, "SELECT user_image FROM users WHERE id='$id' ");
                 $usersV_data = mysqli_fetch_array($usersV_qry_run);
             }
-                ?>
+            ?>
             <a class="text-white px-3" href="excos_profile.php"><img src="../images/userDP/<?= $usersV_data['user_image']; ?>" width="40px" class="rounded-circle" alt=""></a>
             <button class="navbar-toggler text-white d-md-none collapsed outline-0 border-0 pt-1" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="fa fa-bars outline-0 border-0"></span>

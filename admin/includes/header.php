@@ -33,6 +33,8 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome Icons Online -->
     <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <!-- Bootstrap Online -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <!-- Online alertify CSS file -->
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
@@ -44,6 +46,9 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
     <link rel="stylesheet" href="assets/alertifyjs/css/themes/bootstrap.min.css" />
     <!-- font awesome 5 -->
     <link rel="stylesheet" href="../../fontawesome5/css/all.min.css">
+
+    <!-- ED EDITOR CDN -->
+    <script src="https://cdn.ckeditor.com/ckeditor5/39.0.2/classic/ckeditor.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="assets/css/adminDashboard.css" rel="stylesheet">

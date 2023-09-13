@@ -242,11 +242,11 @@ $officedata = mysqli_fetch_array($OfficeInfo);
                                 </div>
                             </div>
                         </div>
-                        <!-- More Settings -->
+                        <!-- Upload / Delete Slide images -->
                         <div class="accordion-item mt-1">
                             <h2 class="accordion-header" id="heading5">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                                    More Settings
+                                    Upload / Delete Slide images
                                 </button>
                             </h2>
                             <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="heading5" data-bs-parent="#settingsaccordion">
