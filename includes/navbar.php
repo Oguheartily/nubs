@@ -1,6 +1,18 @@
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark shadow">
     <div class="container">
-        <a class="navbar-brand" href="index.php"><img src="logo-black.png" width="80px" alt=""></a>
+        <a class="navbar-brand" href="index.php">
+            <?php
+            $getlogo = getSiteLogo();
+            if (mysqli_num_rows($getlogo) > 0) {
+                $logo = mysqli_fetch_array($getlogo);
+            ?>
+                <img src="<?= $logo['site_icons']; ?>" width="80px" alt="<?= $logo['icon_name']; ?>">
+            <?php
+            } else {
+                echo "<h2>NUBS</h2>";
+            }
+            ?>
+        </a>
         <button class="navbar-toggler border-0 outline-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa fa-bars"></span>
         </button>

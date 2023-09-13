@@ -81,4 +81,14 @@ function getOrganizationInfo() {
     global $con;
     return $office_qry_run = mysqli_query($con, "SELECT * FROM `organization_info` ");
 }
+/**GET SITE LOGO */
+function getSiteLogo(){
+    global $con;
+    return $siteLogo_run = mysqli_query($con, "SELECT * FROM `logo_favicon` WHERE `icon_name`='logo' ");
+}
+/**GET SITE FAVICON */
+function getSiteFavicon(){
+    global $con;
+    return $siteLogo_run = mysqli_query($con, "SELECT * FROM `logo_favicon` WHERE `icon_name`='favicon' ");
+}
 ?>

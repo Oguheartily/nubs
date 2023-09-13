@@ -17,6 +17,8 @@
 <script src="../assets/js/bootstrap.bundle.min.js"></script>
 <!-- Fontawesome JS Offline -->
 <script src="../../fontawesome5/js/all.min.js"></script>
+<!-- sweetalert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- Online Alertify JavaScript -->
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <!--  alertify offline js file -->
@@ -43,6 +45,8 @@
 
   });
 </script>
+<!-- Custom JS Offline -->
+<script src="assets/js/custom.js"></script>
 </body>
 
 </html>

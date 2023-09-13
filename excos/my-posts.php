@@ -3,7 +3,6 @@ include('../middleware/excosAuthenticator.php');
 /** excosfunction .php is already in adminware so we dont need to inclusde it here */
 include_once('../config/dbcon.php');
 include('includes/header.php');
-$id = returnExcosId();
 ?>
 
 <div >
@@ -23,17 +22,16 @@ $id = returnExcosId();
                                 <th>Status</th>
                                 <th>Date</th>
                                 <th>Edit</th>
-                                <th>Action</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
+                            <?php 
                             /**select all posts that belong to the current Exco */
-                            $query_run = mysqli_query($con, "SELECT * FROM `events_post` WHERE `user_id`='$id' ");
+                            $myPosts_qry_run = getAllMyPosts();
                             // mysqli_fetch_assoc()
-
-                            if (mysqli_num_rows($query_run) > 0) {
-                                foreach ($query_run as $item) { ?>
+                            if (mysqli_num_rows($myPosts_qry_run) > 0) {
+                                foreach ($myPosts_qry_run as $item) { ?>
                                     <tr>
                                         <td><?= $item['id']; ?></td>
                                         <td><?= $item['heading']; ?></td>
@@ -42,9 +40,9 @@ $id = returnExcosId();
                                         </td>
                                         <td><?= $item['status'] ? '<span class="btn btn-success btn-sm text-white fs-6 mx-1"><span class="fa fa-check"></span></span>' : '<span class="btn btn-warning btn-sm text-dark fs-6"><span class="fa fa-hourglass-half"></span></span>'; ?></td>
                                         <td><?= $item['created_date']; ?></td>
-                                        <td><a href="edit-event.php?id=<?= $item['id']; ?>" class="btn btn-sm btn-info">Edit</a></td>
+                                        <td><a href="edit-event.php?id=<?= $item['id']; ?>" class="btn btn-sm btn-info"><i class="fas fa-pen"></i></a></td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-danger delete_eventpost_btn" value="<?= $item['id']; ?>">Delete</button>
+                                            <button type="button" class="btn btn-sm btn-danger delete_eventpost_btn" value="<?= $item['id']; ?>"><i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                             <?php

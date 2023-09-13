@@ -48,7 +48,17 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
     <!-- sidebar -->
     <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" id="navHeader">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="index.php">
-            <img src="../logo-black.png" width="60px" alt="">
+        <?php
+            $getlogo = getSiteLogo();
+            if (mysqli_num_rows($getlogo) > 0) {
+                $logo = mysqli_fetch_array($getlogo);
+            ?>
+                <img src="../<?= $logo['site_icons']; ?>" width="60px" alt="<?= $logo['icon_name']; ?>">
+            <?php
+            } else {
+                echo "<h2>NUBS</h2>";
+            }
+            ?>
         </a>
         <div class="position-relative">
             <?php 

@@ -1,27 +1,43 @@
-<?php 
+<?php
+
 /** getting the filename from the url, used to detect the active tabs */
 $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'], "/") + 1);
 /** using a ternary operator: if current page = href. add alass active and primary color.  */
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="nubs-website">
     <meta name="author" content="Ogu Heartily Pasisi">
-    <!-- <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png"> -->
-    <!-- <link rel="icon" type="image/png" href="../assets/img/favicon.png"> -->
+    <link rel="apple-touch-icon" sizes="76x76" href="<?php
+                                                        $getfavicon = getSiteFavicon();
+                                                        if (mysqli_num_rows($getfavicon) > 0) {
+                                                            $favicon = mysqli_fetch_array($getfavicon);
+                                                            echo '../' . $favicon['site_icons'];
+                                                        } else {
+                                                        }
+                                                        ?>">
+    <link rel="icon" type="image/png" href="<?php
+                                            $getfavicon = getSiteFavicon();
+                                            if (mysqli_num_rows($getfavicon) > 0) {
+                                                $favicon = mysqli_fetch_array($getfavicon);
+                                                echo '../' . $favicon['site_icons'];
+                                            } else {
+                                            }
+                                            ?>">
     <title>ADMIN</title>
     <!-- Bootstrap core CSS Offline -->
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome Icons Online -->
-    <!-- <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
     <!-- Online alertify CSS file -->
-    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" /> -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
     <!-- online alertify Bootstrap theme -->
-    <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" /> -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
     <!-- offline Alertify css file -->
     <link rel="stylesheet" href="assets/alertifyjs/css/alertify.min.css" />
     <!-- offline alertify theme -->
@@ -32,13 +48,13 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
     <!-- Custom styles for this template -->
     <link href="assets/css/adminDashboard.css" rel="stylesheet">
     <!-- CSS -->
-	<style type="text/css">
-	.cke_textarea_inline{
-		border: 1px solid black;
-	}
-	</style>
+    <style type="text/css">
+        .cke_textarea_inline {
+            border: 1px solid black;
+        }
+    </style>
     <!-- CKEditor -->
-	<script src="../excos/assets/ckeditor/ckeditor.js" ></script>
+    <script src="../excos/assets/ckeditor/ckeditor.js"></script>
 </head>
 
 <body>
@@ -46,7 +62,17 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
     <!-- sidebar -->
     <header class="navbar navbar-dark sticky-top flex-md-nowrap p-0 shadow" id="navHeader">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="index.php">
-            <img src="../logo-black.png" width="60px" alt="">
+            <?php
+            $getlogo = getSiteLogo();
+            if (mysqli_num_rows($getlogo) > 0) {
+                $logo = mysqli_fetch_array($getlogo);
+            ?>
+                <img src="../<?= $logo['site_icons']; ?>" width="60px" alt="<?= $logo['icon_name']; ?>">
+            <?php
+            } else {
+                echo "<h2>NUBS</h2>";
+            }
+            ?>
         </a>
         <div class="position-relative">
             <!-- <a class="text-white px-3" href="admin_profile.php"><img src="image/profile-photo.jpg" width="30px" class="rounded-circle" alt=""></a> -->
@@ -129,15 +155,15 @@ $current_page = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'],
                         </li>
                     </ul>
                     <!-- account -->
-                    
-                    <div >
-                    <span class="btn collapsed fw-bold" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false"><span class="fas fa-user-circle"></span> Account </span>
-                    <ul class="collapse" id="account-collapse">
-                        <li class="nav-item"><a href="admin_profile.php" class="nav-link  <?= $current_page == "admin_profile.php" ? ' active' : ''; ?>"><span class="fa fa-user me-2"></span>Profile</a></li>
-                        <li class="nav-item"><a href="../index.php" class="nav-link"><span class="fa fa-user-tag me-2"></span>As User</a></li>
-                        <li class="nav-item"><a href="settings.php" class="nav-link"><span class="fa fa-cog me-2"></span>Settings</a></li>
-                        <li class="nav-item"><a href="../logout.php" class="nav-link"><span class="fa fa-sign-out-alt me-2"></span>Logout</a></li>
-                    </ul>
+
+                    <div>
+                        <span class="btn collapsed fw-bold" data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false"><span class="fas fa-user-circle"></span> Account </span>
+                        <ul class="collapse" id="account-collapse">
+                            <li class="nav-item"><a href="admin_profile.php" class="nav-link  <?= $current_page == "admin_profile.php" ? ' active' : ''; ?>"><span class="fa fa-user me-2"></span>Profile</a></li>
+                            <li class="nav-item"><a href="../index.php" class="nav-link"><span class="fa fa-user-tag me-2"></span>As User</a></li>
+                            <li class="nav-item"><a href="settings.php" class="nav-link"><span class="fa fa-cog me-2"></span>Settings</a></li>
+                            <li class="nav-item"><a href="../logout.php" class="nav-link"><span class="fa fa-sign-out-alt me-2"></span>Logout</a></li>
+                        </ul>
                     </div>
                 </div>
             </nav>

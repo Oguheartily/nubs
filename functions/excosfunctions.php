@@ -15,14 +15,19 @@ function returnExcosId(){
     }
     return $id;
 }
-/**GET ALL Excos */
+/**GET ALL DATA FROM USERS TABLE */
 function getAllFromUsers(){
     global $con;
     $excoId = $_SESSION['auth_user']['user_id'];
     $query_run = mysqli_query($con,"SELECT * FROM `users` WHERE `id`='$excoId' ");
     return $query_run;
 }
-
+/**GET ALL POSTS OF A PARTICULAR EXCO */
+function getAllMyPosts(){
+    global $con;
+    $excoId = $_SESSION['auth_user']['user_id'];
+    return $myPosts_run = mysqli_query($con, "SELECT * FROM `events_post` WHERE `user_id`='$excoId' ORDER BY `created_date` DESC ");
+}
 /*********************************************************************
    Purpose  : function to truncate text and show read more links.
    Parameters     : @$story_desc : story description
@@ -42,5 +47,15 @@ function readMoreFunction($story_desc, $link, $targetFile, $id)
     $story_desc = substr($story_desc, 0, strrpos($story_desc, ' '));
     $story_desc = $story_desc . " . . .<span class='btn btn-sm btn-primary fs-0'><a href='$link?$targetFile=$id' class='text-white text-decoration-none'>Read More...</a></span>";
     return $story_desc;
+}
+/**GET SITE LOGO */
+function getSiteLogo(){
+    global $con;
+    return $siteLogo_run = mysqli_query($con, "SELECT * FROM `logo_favicon` WHERE `icon_name`='logo' ");
+}
+/**GET SITE FAVICON */
+function getSiteFavicon(){
+    global $con;
+    return $siteLogo_run = mysqli_query($con, "SELECT * FROM `logo_favicon` WHERE `icon_name`='favicon' ");
 }
 ?>

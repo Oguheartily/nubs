@@ -15,12 +15,11 @@ function returnExcosId(){
     }
     return $id;
 }
-/**GET ALL USERS */
+/**GET ALL USERS TABLE FOR THIS USER */
 function getAllFromUsers(){
     global $con;
     $excoId = $_SESSION['auth_user']['user_id'];
-    $query_run = mysqli_query($con,"SELECT * FROM `users` WHERE `id`='$excoId' ");
-    return $query_run;
+    return $query_run = mysqli_query($con,"SELECT * FROM `users` WHERE `id`='$excoId' "); 
 }
 
 /*********************************************************************
@@ -43,7 +42,11 @@ function readMoreFunction($story_desc, $link, $targetFile, $id)
     $story_desc = $story_desc . " . . .<span class='btn btn-sm btn-primary fs-0'><a href='$link?$targetFile=$id' class='text-white text-decoration-none'>Read More...</a></span>";
     return $story_desc;
 }
-
+/**GET ALL USERS */
+function getAllUsers(){
+    global $con;
+    return $query_run = mysqli_query($con, "SELECT * FROM `users` "); 
+}
 /**ALL REGISTERED MEMBERS */
 function getAllMembers(){
     global $con;
@@ -73,6 +76,32 @@ function checkMemberIdValidity($customerId){
 function getOrganizationInfo() {
     global $con;
     return $office_qry_run = mysqli_query($con, "SELECT * FROM `organization_info` ");
+}
+/**GET ALL POSTS */
+function getAllPosts() {
+    global $con;
+    return $allPosts_qry_run = mysqli_query($con, "SELECT * FROM `events_post` ORDER BY `created_date` DESC ");
+}
+/**GET ALL PENDING POSTS */
+function getAllPendingPosts() {
+    global $con;
+    return $allPosts_qry_run = mysqli_query($con, "SELECT * FROM `events_post` WHERE `status`='0' ");
+}
+/**GET ALL POSTS OF A PARTICULAR EXCO */
+function getAllMyPosts(){
+    global $con;
+    $excoId = $_SESSION['auth_user']['user_id'];
+    return $myPosts_run = mysqli_query($con, "SELECT * FROM `events_post` WHERE `id`='$excoId' ORDER BY `created_date` DESC ");
+}
+/**GET SITE LOGO */
+function getSiteLogo(){
+    global $con;
+    return $siteLogo_run = mysqli_query($con, "SELECT * FROM `logo_favicon` WHERE `icon_name`='logo' ");
+}
+/**GET SITE FAVICON */
+function getSiteFavicon(){
+    global $con;
+    return $siteLogo_run = mysqli_query($con, "SELECT * FROM `logo_favicon` WHERE `icon_name`='favicon' ");
 }
 
 ?>

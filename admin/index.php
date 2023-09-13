@@ -1,6 +1,11 @@
 <?php
 include('../middleware/adminAuthenticator.php');
 include('includes/header.php');
+
+$pending = mysqli_num_rows(getAllPendingPosts());
+$totalRegUsers = mysqli_num_rows(getAllUsers());
+$totalexcos = mysqli_num_rows(getAllCurrentExcos()) + 2;
+$totalAlumniExcos = mysqli_num_rows(getAllAlumniExcos());
 ?>
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
@@ -8,6 +13,95 @@ include('includes/header.php');
 </div>
 <!-- Begin Page Content -->
 <div class="container-fluid">
+  <!-- Content Row -->
+  <div class="row">
+    <!-- Earnings Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs fw-bold text-primary text-uppercase mb-1">
+                ALL Nubites</div>
+              <div class="h5 mb-0 fw-bold text-gray-800">
+                <?=
+                /**number_format(number,decimals,decimalpoint,separator) */
+                number_format($totalRegUsers, 0, '.', ','); ?>
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-users fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs fw-bold text-success text-uppercase mb-1">
+                Current Excos</div>
+              <div class="h5 mb-0 fw-bold text-gray-800">
+                <?=
+                /**number_format(number,decimals,decimalpoint,separator) */
+                number_format($totalexcos, 0, '.', ','); ?>
+              </div>
+            </div>
+            <div class="col-auto">
+              <span class="fas fa-users-cog fw-bold fs-1 text-gray-300"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs fw-bold text-info text-uppercase mb-1">Total Alumni Excos
+              </div>
+              <div class="row no-gutters align-items-center">
+                <div class="col-auto">
+                  <div class="h5 mb-0 mr-3 fw-bold text-gray-800">
+                    <?=
+                    /**number_format(number,decimals,decimalpoint,separator) */
+                    number_format($totalAlumniExcos, 0, '.', ','); ?></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-user-friends fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-xs fw-bold text-warning text-uppercase mb-1">
+                Pending Posts</div>
+              <div class="h5 mb-0 fw-bold text-gray-800"><?= $pending; ?></div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-comments fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <!-- Content Row -->
   <div class="row ">
     <?php

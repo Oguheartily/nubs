@@ -3,7 +3,7 @@
 include('../config/dbcon.php');
 include('../functions/adminfunctions.php');
 
-/** ADD EVENT POST PROCESSING */
+/** ADD POST PROCESSING */
 if(isset($_POST['add_post_btn'])){
     $category_id = $_POST['category_id'];
     $userId = $_POST['userId'];
@@ -72,8 +72,29 @@ else if(isset($_POST['update_post_btn'])){
         redirecter("edit-event.php?id=$eventpost_id", "Unable to Update Post, Something went wrong");
     }
 }
-/** DELETE POST, CONFIRMED BY AJAX BEFORE DELETION */
-else if(isset($_POST['delete_eventpost_btn'])){
+/** DELETE MY POST, CONFIRMED BY AJAX BEFORE DELETING */
+else if(isset($_POST['delete_mypost_btn'])){
+    $myPost_id = mysqli_real_escape_string($con, $_POST['myPost_id']);
+    /**check database for image name of id to be deleted */
+    $myPost_query_run = mysqli_query($con, "SELECT * FROM `event_post` WHERE id='$myPost_id' ");
+    $myPost_data = mysqli_fetch_array($myPost_query_run);
+    $image_to_delete = $myPost_data['image'];
+    /**query that delete the selected row frow db */
+    $delete_query_run = mysqli_query($con, $delete_query, "DELETE FROM `event_post` WHERE id='$myPost_id' ");
+    if($delete_query_run){
+        /**if file with image name exist delete image from uploads 
+         * folder after deleting myPost from database */
+        if(file_exists("../uploads/".$image_to_delete)){
+            unlink("../uploads/".$image_to_delete);
+        }
+        echo 200;
+    }
+    else{
+        echo 500;
+    }
+}
+/** DELETE OTHER POST, CONFIRMED BY AJAX BEFORE DELETING */
+else if(isset($_POST['delete_otherpost_btn'])){
     $eventpost_id = mysqli_real_escape_string($con, $_POST['eventpost_id']);
     /**check database for image name of id to be deleted */
     $eventpost_query_run = mysqli_query($con, "SELECT * FROM `event_post` WHERE id='$eventpost_id' ");
@@ -153,7 +174,7 @@ else if(isset($_POST['updateExcosStatusBtn'])){
 
     redirecter("viewExcos.php?id=$userId", "Excos Status Updated Successfully");
 } 
-/**UPDATE CUSTOMER STATUS SUSPEND/ UNSUSPEND */
+/**UPDATE CUSTOMER STATUS SUSPEND/UNSUSPEND */
 else if(isset($_POST['suspendMemberBtn'])){
     $userId = $_POST['userId'];
     $memberNewRoleAs = $_POST['member_new_role_as'];
@@ -217,6 +238,130 @@ else if(isset($_POST['officedata_update_btn'])){
 /**OFFICE DATA CANCEL BUTTON */
 else if(isset($_POST['officedata_cancel_btn'])){
     redirecter("settings.php", "Changes reversed");
+}
+/**UPLOAD SITE LOGO */
+else if(isset($_POST['siteLogo_upload_btn'])){
+    $imageName = $_POST['imageName'];
+
+    /**get name of uploaded image */
+    $image = $_FILES['siteLogo']['name'];
+    $path = "..";
+    $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+    // $filename = $image;
+    $filename = 'logo.'.$image_ext;
+
+    if($imageName != "" && $image != "" ){
+        $logo_qry_run = mysqli_query($con, "INSERT INTO `logo_favicon`(`icon_name`, `site_icons`) 
+        VALUES ('$imageName','$filename')");
+
+        if($logo_qry_run){
+            move_uploaded_file($_FILES['siteLogo']['tmp_name'], $path.'/'.$filename);
+            redirecter("index.php", "Logo added successfully");
+        }
+        else{
+            redirecter("settings.php", "Something went wrong, Unable to add Logo");
+        }
+    }
+    else{
+        redirecter("settings.php", "Please pick an image.");
+    }
+}
+/**UPDATE LOGO */
+else if(isset($_POST['update_siteLogo_btn'])){
+    $iconName = $_POST['iconName'];
+
+    /**get name of uploaded image */
+    /** get old image */
+    $old_icon = $_POST['old_icon'];
+    /**get name of uploaded image */
+    $new_image = $_FILES['siteLogo']['name'];
+    if($new_image != ""){
+        // $update_filename = $new_image;
+        $image_ext = pathinfo($new_image, PATHINFO_EXTENSION);
+        $update_filename = 'logo.'.$image_ext;
+    }
+    else {
+        $update_filename = $old_icon;
+        redirecter("index.php", "Nothing to change");
+    }
+    $path = "..";
+    $siteLogo_update_query_run = mysqli_query($con, "UPDATE `logo_favicon` SET  `site_icons`='$update_filename' WHERE `icon_name`='$iconName' ");
+        
+    if($product_update_query_run){
+        if($new_image != ""){
+            /**since new image exist, delete the old image from the uploads folder */
+            if(file_exists("../".$old_icon)){
+                unlink("../".$old_icon);
+            }
+            move_uploaded_file($_FILES['siteLogo']['tmp_name'], $path.'/'.$update_filename);
+        }
+        redirecter("index.php", "Logo added successfully");
+    }
+    else{
+        redirecter("settings.php", "Something went wrong, Unable to add Logo");
+    }
+}
+/**UPLOAD SITE FAVICON */
+else if(isset($_POST['favicon_upload_btn'])){
+    $imageName = $_POST['imageName'];
+
+    /**get name of uploaded image */
+    $image = $_FILES['siteFavicon']['name'];
+    $path = "..";
+    $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+    // $filename = $image;
+    $filename = 'favicon.'.$image_ext;
+
+    if($imageName != "" && $image != "" ){
+        $logo_qry_run = mysqli_query($con, "INSERT INTO `logo_favicon`(`icon_name`, `site_icons`) 
+        VALUES ('$imageName','$filename')");
+
+        if($logo_qry_run){
+            move_uploaded_file($_FILES['siteFavicon']['tmp_name'], $path.'/'.$filename);
+            redirecter("index.php", "Favicon added successfully");
+        }
+        else{
+            redirecter("settings.php", "Something went wrong, Unable to add Favicon");
+        }
+    }
+    else{
+        redirecter("settings.php", "Please pick an image.");
+    }
+}
+/**UPDATE FAVICON */
+else if(isset($_POST['update_favicon_btn'])){
+    $iconName = $_POST['iconName'];
+
+    /**get name of uploaded image */
+    /** get old image */
+    $old_icon = $_POST['old_icon'];
+    /**get name of uploaded image */
+    $new_image = $_FILES['sitefavicon']['name'];
+    if($new_image != ""){
+        // $update_filename = $new_image;
+        $image_ext = pathinfo($new_image, PATHINFO_EXTENSION);
+        $update_filename = 'favicon.'.$image_ext;
+    }
+    else {
+        $update_filename = $old_icon;
+        redirecter("index.php", "Nothing to change");
+    }
+    $path = "..";
+    $sitefavicon_update_query_run = mysqli_query($con, "UPDATE `logo_favicon` SET  `site_icons`='$update_filename' WHERE `icon_name`='$iconName' ");
+        
+    if($product_update_query_run){
+        if($new_image != ""){
+            /**since new image exist, delete the old image from the uploads folder */
+            if(file_exists("../".$old_icon)){
+                unlink("../".$old_icon);
+            }
+            move_uploaded_file($_FILES['sitefavicon']['tmp_name'], $path.'/'.$update_filename);
+        }
+        redirecter("index.php", "Logo added successfully");
+    }
+    else{
+        redirecter("settings.php", "Something went wrong, Unable to add Logo");
+    }
 }
 else{
     header('Location: ../index.php');

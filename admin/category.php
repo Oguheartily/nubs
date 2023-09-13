@@ -20,7 +20,7 @@ include('includes/header.php');
                                 <th>ID</th>
                                 <th>Category</th>
                                 <th>Edit</th>
-                                <th>Action</th>
+                                <th>Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,9 +33,9 @@ include('includes/header.php');
                                     <tr>
                                         <td><?= $item['id']; ?></td>
                                         <td><?= $item['post_category']; ?></td>
-                                        <td><a href="edit-category.php?id=<?= $item['id']; ?>" class="btn btn-sm btn-info">Edit</a></td>
+                                        <td><a href="edit-category.php?id=<?= $item['id']; ?>" class="btn btn-sm btn-info"><i class="fas fa-pen"></i></a></td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-danger delete_category_btn" value="<?= $item['id']; ?>">Delete</button>
+                                            <button type="button" class="btn btn-sm btn-danger delete_category_btn" value="<?= $item['id']; ?>"><i class="fas fa-trash-alt"></i></button>
                                         </td>
                                     </tr>
                             <?php
