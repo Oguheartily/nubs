@@ -1,6 +1,5 @@
 <?php 
-// require('../config/dbcon.php');
-    require('adminfunctions.php');
+    require('userfunctions.php');
     /**USER REGISTRATION */
     if(isset($_POST['register_btn'])){
 

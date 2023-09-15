@@ -2,7 +2,8 @@
     <div class="container">
         <a class="navbar-brand" href="index.php">
             <?php
-            $getlogo = getSiteLogo();
+            /**GET SITE LOGO */
+            $getlogo = mysqli_query($con, "SELECT * FROM `logo_favicon` WHERE `icon_name`='logo' ");
             if (mysqli_num_rows($getlogo) > 0) {
                 $logo = mysqli_fetch_array($getlogo);
             ?>
