@@ -20,18 +20,18 @@
               <hr class="light">
             </div>
             <div class="col-6 text-center">
-              <p><a href="https://web.facebook.com/profile.php?id=100089238085856" target="_blank"><i class="fab fa-facebook-square"></i>&nbsp;&nbsp;&nbsp;facebook</a></p>
+              <p><a href="<?= $officedata['office_facebook']; ?>" target="_blank"><i class="fab fa-facebook-square"></i>&nbsp;&nbsp;&nbsp;facebook</a></p>
             </div>
             <div class="col-6 text-center">
-              <p><a href="https://www.instagram.com/betmystro/?next=%2F" target="_blank"><i class="fab fa-instagram"></i>&nbsp;&nbsp;&nbsp;instagram</a></p>
+              <p><a href="<?= $officedata['office_instagram']; ?>" target="_blank"><i class="fab fa-instagram"></i>&nbsp;&nbsp;&nbsp;instagram</a></p>
             </div>
             <div class="col-6 text-center">
-              <p><a href="https://twitter.com/Bet_mystro" data-show-count="false" target="_blank" class="pe-3"><i class="fab fa-twitter"></i>&nbsp;&nbsp;&nbsp;twitter</a>
+              <p><a href="<?= $officedata['office_x']; ?>" data-show-count="false" target="_blank" class="pe-3"><i class="fab fa-twitter"></i>&nbsp;&nbsp;&nbsp;twitter</a>
                 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></a>
               </p>
             </div>
             <div class="col-6 text-center">
-              <p><a href="https://www.youtube.com/channel/UCwd6T7Mg1KMIgqPSW7vDscQ" target="_blank" class="pe-3"><i class="fab fa-youtube me-2"></i>&nbsp;youtube</a></p>
+              <p><a href="<?= $officedata['office_youtube']; ?>" target="_blank" class="pe-3"><i class="fab fa-youtube me-2"></i>&nbsp;youtube</a></p>
             </div>
             <div class="col-12">
               <hr class="light-100">

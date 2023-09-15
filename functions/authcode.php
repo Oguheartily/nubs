@@ -25,10 +25,24 @@
             if(empty($activeNubsYear)){ $activeNubsYear = date("Y"); }
 
             if ($excosUniquCode == "Aluta4ever") {
+                $role_as = 1;
+                $status = 5;
+                $register_query_run = mysqli_query($con, "INSERT INTO `users`(`first_name`, `last_name`, `user_name`, `gender`, `e_mail`, `phone_number`, `user_address`, `compound`, `current_position`, `active_year`, `school`, `state_of_schooling`, `pass_word`,`role_as`,`status`) 
+            VALUES ('$firstname', '$lastname', '$username', '$gender','$email','$phonenumber','$userAddress','$compound','$currentNubsPost','$activeNubsYear','$schoolingState','$hashed_password','$role_as','$status')");
+            }
+            else if ($excosUniquCode == "Newaluta") {
                 $role_as = 2;
-                $register_query_run = mysqli_query($con, "INSERT INTO `users`(`first_name`, `last_name`, `user_name`, `gender`, `e_mail`, `phone_number`, `user_address`, `compound`, `current_position`, `active_year`, `school`, `state_of_schooling`, `pass_word`,`role_as`) 
-            VALUES ('$firstname', '$lastname', '$username', '$gender','$email','$phonenumber','$userAddress','$compound','$currentNubsPost','$activeNubsYear','$schoolingState','$hashed_password', ''$role_as)");
-            } else {
+                $status = 2;
+                $register_query_run = mysqli_query($con, "INSERT INTO `users`(`first_name`, `last_name`, `user_name`, `gender`, `e_mail`, `phone_number`, `user_address`, `compound`, `current_position`, `active_year`, `school`, `state_of_schooling`, `pass_word`,`role_as`,`status`) 
+            VALUES ('$firstname', '$lastname', '$username', '$gender','$email','$phonenumber','$userAddress','$compound','$currentNubsPost','$activeNubsYear','$schoolingState','$hashed_password','$role_as','$status')");
+            } 
+            else if ($excosUniquCode == "Alumniexco") {
+                $role_as = 2;
+                $status = 3;
+                $register_query_run = mysqli_query($con, "INSERT INTO `users`(`first_name`, `last_name`, `user_name`, `gender`, `e_mail`, `phone_number`, `user_address`, `compound`, `current_position`, `active_year`, `school`, `state_of_schooling`, `pass_word`,`role_as`,`status`) 
+            VALUES ('$firstname', '$lastname', '$username', '$gender','$email','$phonenumber','$userAddress','$compound','$currentNubsPost','$activeNubsYear','$schoolingState','$hashed_password','$role_as','$status')");
+            } 
+            else {
             $register_query_run = mysqli_query($con, "INSERT INTO `users`(`first_name`, `last_name`, `user_name`, `gender`, `e_mail`, `phone_number`, `user_address`, `compound`, `current_position`, `active_year`, `school`, `state_of_schooling`, `pass_word`) 
             VALUES ('$firstname', '$lastname', '$username', '$gender','$email','$phonenumber','$userAddress','$compound','$currentNubsPost','$activeNubsYear','$schoolingState','$hashed_password')");
             }
