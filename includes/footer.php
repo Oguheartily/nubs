@@ -38,7 +38,7 @@
             </div>
             <address class="text-center" id="footnote">
               The National Union of Bille Students (NUBS), is the sole organization of all students from the
-              Community Bille Kingdom, in South-South Nigeria.
+              Community of Bille Kingdom, in South-South Nigeria.
             </address>
             <hr class="light-100">
             <div class="mb-3 text-center">

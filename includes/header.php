@@ -4,7 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta http-equiv="refresh" content="0; url=http:"> -->
+    <meta name="description" content="The Official Website of The National Union of Bille Students (NUBS)">
     <title>Ogu Template</title>
+    <link rel="canonical" href=""></link:rel>
     <!-- online font awesome link -->
     <script src="https://kit.fontawesome.com/0923c3d217.js" crossorigin="anonymous"></script>
     <!-- Offline font awesome CSS -->

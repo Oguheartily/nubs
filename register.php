@@ -1,7 +1,6 @@
 <!-- herder -->
 <?php
 include('functions/userfunctions.php');
-// session_start();
 /** check if user is logged in and redirect to index page */
 if (isset($_SESSION['auth'])) {
     redirecter("index.php", "You are already Logged in");

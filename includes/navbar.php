@@ -6,7 +6,7 @@
             if (mysqli_num_rows($getlogo) > 0) {
                 $logo = mysqli_fetch_array($getlogo);
             ?>
-                <img src="<?= $logo['site_icons']; ?>" width="80px" alt="<?= $logo['icon_name']; ?>">
+                <img src="<?= $logo['site_icons']; ?>" width="50px" alt="<?= $logo['icon_name']; ?>">
             <?php
             } else {
                 echo "<h2>NUBS</h2>";

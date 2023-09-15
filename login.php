@@ -1,5 +1,5 @@
 <?php 
-session_start();
+include('functions/userfunctions.php');
 /** check if user is logged in and redirect to index page */
 if(isset($_SESSION['auth'])){
     $_SESSION['message'] = "You are already Logged In";
