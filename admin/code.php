@@ -287,7 +287,7 @@ else if(isset($_POST['update_siteLogo_btn'])){
     $path = "..";
     $siteLogo_update_query_run = mysqli_query($con, "UPDATE `logo_favicon` SET  `site_icons`='$update_filename' WHERE `icon_name`='$iconName' ");
         
-    if($product_update_query_run){
+    if($siteLogo_update_query_run){
         if($new_image != ""){
             /**since new image exist, delete the old image from the uploads folder */
             if(file_exists("../".$old_icon)){
@@ -349,7 +349,7 @@ else if(isset($_POST['update_favicon_btn'])){
     $path = "..";
     $sitefavicon_update_query_run = mysqli_query($con, "UPDATE `logo_favicon` SET  `site_icons`='$update_filename' WHERE `icon_name`='$iconName' ");
         
-    if($product_update_query_run){
+    if($sitefavicon_update_query_run){
         if($new_image != ""){
             /**since new image exist, delete the old image from the uploads folder */
             if(file_exists("../".$old_icon)){
